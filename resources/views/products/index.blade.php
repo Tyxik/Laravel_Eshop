@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container py-10 mx-auto">
-    <h1 class="text-3xl font-semibold text-center mb-8 text-white">Naše Produkty</h1>
+    <h1 class="text-3xl font-semibold text-center mb-8 text-white p-10" >Naše Produkty</h1>
 
     <!-- CSS pro Grid -->
     <style>
