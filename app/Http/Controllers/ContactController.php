@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Contact;
 use Illuminate\Http\Request;
-
 class ContactController extends Controller
 {
     /**
@@ -62,4 +61,20 @@ class ContactController extends Controller
     {
         //
     }
+
+    public function send(Request $request)
+    {
+        $validated = $request->validate([
+            'name' => 'required|max:255',
+            'email' => 'required|email',
+            'subject' => 'nullable|max:255',
+            'message' => 'required',
+        ]);
+
+        // Logika pro uložení nebo odeslání e-mailu
+        // Mail::to('admin@example.com')->send(new ContactFormMail($validated));
+
+        return back()->with('success', 'Vaše zpráva byla úspěšně odeslána.');
+    }
 }
+
