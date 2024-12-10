@@ -11,7 +11,7 @@ class ContactController extends Controller
      */
     public function index()
     {
-     return view(view:'asi_contact.index');     
+     return view(view:'contact.index');     
     }
 
     /**
