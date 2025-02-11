@@ -9,7 +9,9 @@
         <h1 class="text-white text-5xl font-bold text-center z-10">Vítejte na naší stránce!</h1>
     </div>
 </div>
-
+<div>
+   
+</div>
     <!-- Why Choose Us Section -->
     <div class="py-10 text-center bg-gray-100">
         <h2 class="text-3xl font-semibold">Proč nakupovat u nás?</h2>
