@@ -7,11 +7,19 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
-    use HasFactory; 
-      // Primární klíč
-    protected $primaryKey = 'id';
+    use HasFactory;
 
+    // Povolíme hromadné přiřazení těchto polí
     protected $fillable = [
-        'name', 'description', 'price', 'sku', 'in_stock'
+        'name',
+        'description',
+        'price',
+        'category_id',
     ];
+
+    // Vztah k Category modelu
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
 }
