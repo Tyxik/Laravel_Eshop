@@ -25,9 +25,10 @@ class ShippingResource extends Resource
                 TextInput::make('name')
                     ->required()
                     ->maxLength(255),
-                NumberInput::make('price')
+                    TextInput::make('price')
+                    ->numeric()
                     ->required()
-                    ->min(0)
+                    ->minValue(0)
                     ->step(0.01),
                 TextArea::make('description')
                     ->nullable()
