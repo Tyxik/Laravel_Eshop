@@ -1,0 +1,10 @@
+@layer base{
+    @font-face {
+        font-family:Array ;
+        src: url("/public/fonts/Array/Array-Regular.ttf") format("ttf");
+    }
+    @font-face {
+        font-family: Khand;
+        src: url("/public/fonts/Khand/Khand-Regular.ttf")format("ttf");
+    }
+}
