@@ -39,12 +39,13 @@
         </div>
     </div>
 
-    <!-- Reviews Section (Include reviews component) -->
-    @include('components.reviews')
-
     <!-- Products Horizontal Scroll Section -->
     @include('components.product-slider')
 
+    <!-- Reviews Section (Now under the slider) -->
+    @include('components.reviews')
+
+    <!-- Contact Form Section -->
     @include('components.contact-form')
 @endsection
 
