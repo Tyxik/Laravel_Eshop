@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container py-10 mx-auto">
-    <h1 class="text-3xl font-semibold text-center mb-8 text-white p-10" >Naše Produkty</h1>
+    <h1 class="text-3xl font-semibold text-center mb-8 text-white p-10">Naše Produkty</h1>
 
     <!-- CSS pro Grid -->
     <style>
@@ -20,12 +20,23 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px); /* Efekt posunutí karty nahoru */
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); /* Zvýšení stínu při hoveru */
         }
 
         .product-card img {
             width: 100%;
             height: 200px;
             object-fit: cover;
+            transition: transform 0.3s ease; /* Přechod pro změnu velikosti obrázku */
+        }
+
+        .product-card:hover img {
+            transform: scale(1.1); /* Efekt zvětšení obrázku */
         }
 
         .product-card .product-description {

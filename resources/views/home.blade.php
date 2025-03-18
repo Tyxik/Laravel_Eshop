@@ -3,13 +3,12 @@
 @section('content')
     <!-- Hero Section with Image and Gradient -->
     <div class="relative h-screen">
-    <img src="https://www.akc.org/wp-content/uploads/2009/01/Cavalier-King-Charles-Spaniel-head-portrait-outdoors.jpg" alt="Vítejte" class="object-cover w-full h-3/4 z-10">
-    <div class="absolute inset-0 bg-gradient-to-b from-black to-transparent opacity-50"></div>
-    <div class="flex items-start justify-center h-3/4 relative pt-14"> 
-    <h1 class="text-white text-5xl font-Array text-center z-10">Vítejte na naší stránce!</h1>
-
+        <img src="https://www.akc.org/wp-content/uploads/2009/01/Cavalier-King-Charles-Spaniel-head-portrait-outdoors.jpg" alt="Vítejte" class="object-cover w-full h-3/4 z-10">
+        <div class="absolute inset-0 bg-gradient-to-b from-black to-transparent opacity-50"></div>
+        <div class="flex items-start justify-center h-3/4 relative pt-14"> 
+            <h1 class="text-white text-5xl font-Array text-center z-10">Vítejte na naší stránce!</h1>
+        </div>
     </div>
-</div>
 
     <!-- Why Choose Us Section -->
     <div class="py-10 text-center bg-gray-100">
@@ -40,12 +39,13 @@
         </div>
     </div>
 
+    <!-- Reviews Section (Include reviews component) -->
+    @include('components.reviews')
 
-   <!-- Products Horizontal Scroll Section -->
-   @include( 'components.product-slider');
+    <!-- Products Horizontal Scroll Section -->
+    @include('components.product-slider')
 
-
-   @include('components.contact-form');
+    @include('components.contact-form')
 @endsection
 
 @push('scripts')
