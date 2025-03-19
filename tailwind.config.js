@@ -1,10 +1,10 @@
 import defaultTheme from 'tailwindcss/defaultTheme';
-import preset from './vendor/filament/support/tailwind.config.preset'
-const Unfonts = require("unplugin-fonts");
+import preset from './vendor/filament/support/tailwind.config.preset';
 
 /** @type {import('tailwindcss').Config} */
 export default {
     presets: [preset],
+    darkMode: 'class', // Povolení dark mode
     content: [
         './vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php',
         './app/Filament/**/*.php',
@@ -16,13 +16,9 @@ export default {
         './resources/**/*.vue',
     ],
     theme: {
-       
-            
-        
-
         fontFamily: {
-            sans: ['Array', 'sans-serif'],  // Tady změníte na váš font "Array"
-            serif: ['Khand', 'serif'],      // Tady změníte na váš font "Khand"
+            sans: ['Array', 'sans-serif'],
+            serif: ['Khand', 'serif'],
         },
         extend: {
             spacing: {
@@ -31,10 +27,17 @@ export default {
             },
             borderRadius: {
                 '4xl': '2rem',
-            }
-        }
+            },
+            animation: {
+                pulse: 'pulseEffect 1.5s infinite alternate',
+            },
+            keyframes: {
+                pulseEffect: {
+                    '0%': { textShadow: '0 0 10px #fff, 0 0 20px #3b82f6, 0 0 30px #3b82f6' },
+                    '100%': { textShadow: '0 0 5px #fff, 0 0 10px #3b82f6, 0 0 15px #3b82f6' },
+                },
+            },
+        },
     },
-    plugins: [
-       
-    ],
+    plugins: [],
 };
