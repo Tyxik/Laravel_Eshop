@@ -8,7 +8,7 @@
         
         <!-- Vylepšený nadpis -->
         <div class="flex items-start justify-center h-3/4 relative pt-14"> 
-            <h1 class="text-white text-5xl font-Array text-center z-10 animate-flicker tracking-widest transition-all duration-500 ease-in-out hover:scale-110 hover:text-blue-400 glow-text">
+            <h1 class="text-white text-5xl font-array text-center z-10 animate-flicker tracking-widest transition-all duration-500 ease-in-out hover:scale-110 hover:text-blue-400 glow-text">
                 Vítejte na naší stránce!
             </h1>
         </div>
@@ -16,7 +16,7 @@
 
     <!-- Why Choose Us Section -->
     <div class="py-10 text-center bg-gray-100 dark:bg-gray-800">
-        <h2 class="text-3xl font-semibold text-gray-900 dark:text-white">Proč nakupovat u nás?</h2>
+        <h2 class="text-3xl font-Array text-gray-900 dark:text-white">Proč nakupovat u nás?</h2>
         <p class="mt-4 text-lg text-gray-700 dark:text-gray-300">Nabízíme nejlepší produkty za nejlepší ceny!</p>
         <div class="mt-6 flex flex-wrap justify-center gap-6">
             <div class="bg-white dark:bg-gray-700 shadow-md rounded-lg p-6 max-w-xs">

@@ -17,8 +17,8 @@ export default {
     ],
     theme: {
         fontFamily: {
-            sans: ['Array', 'sans-serif'],
-            serif: ['Khand', 'serif'],
+            'sans': ['Array', 'sans-serif'],
+            'serif': ['Khand', 'serif'],
         },
         extend: {
             spacing: {
