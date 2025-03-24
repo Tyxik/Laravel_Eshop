@@ -7,19 +7,21 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
-    use HasFactory;
+    use HasFactory; 
+      // Primární klíč
+    protected $primaryKey = 'id';
 
-    // Povolíme hromadné přiřazení těchto polí
     protected $fillable = [
-        'name',
-        'description',
-        'price',
-        'category_id',
+        'name','image', 'description', 'price', 'sku', 'in_stock'
     ];
-
-    // Vztah k Category modelu
-    public function category()
+    public function reviews()
     {
-        return $this->belongsTo(Category::class);
+        return $this->hasMany(Review::class);
     }
+
+    public function averageRating()
+    {
+        return $this->reviews()->avg('rating') ?? 0;
+    }
+
 }

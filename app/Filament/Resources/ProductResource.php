@@ -3,7 +3,6 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\ProductResource\Pages;
-use App\Filament\Resources\ProductResource\RelationManagers;
 use App\Models\Product;
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -12,8 +11,7 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\TextArea;
-use Filament\Forms\Components\NumberInput;
-use Filament\Forms\Components\Toggle;
+use Filament\Forms\Components\FileUpload;
 
 class ProductResource extends Resource
 {
@@ -25,36 +23,45 @@ class ProductResource extends Resource
     {
         return $form
             ->schema([
-                // Formulář pro název produktu
-                Forms\Components\TextInput::make('name')
+                TextInput::make('name')
                     ->label('Product Name')
                     ->required()
                     ->maxLength(255),
 
-                // Formulář pro popis produktu
-                Forms\Components\TextArea::make('description')
+                TextArea::make('description')
                     ->label('Description')
                     ->required()
                     ->maxLength(1000),
 
-                // Formulář pro cenu produktu
-                Forms\Components\TextInput::make('price')
-                ->label('Price')
-                ->required()
-                ->numeric()
-                ->step(0.01)
-                ->helperText('Enter the product price'),
+                TextInput::make('price')
+                    ->label('Price')
+                    ->required()
+                    ->numeric()
+                    ->step(0.01)
+                    ->helperText('Enter the product price'),
 
-                // Formulář pro SKU (Stock Keeping Unit)
-                /*Forms\Components\TextInput::make('sku')
+                TextInput::make('sku')
                     ->label('SKU')
                     ->required()
-                    ->maxLength(255),*/
+                    ->maxLength(255),
 
-                // Formulář pro dostupnost na skladě
-                Forms\Components\TextInput::make('in_stock')
+                TextInput::make('in_stock')
                     ->label('In Stock')
                     ->required(),
+
+                FileUpload::make('images')
+                    ->label('Product Images')
+                    ->image()
+                    ->directory('gallery')
+                    ->maxSize(5120)
+                    ->multiple()
+                    ->helperText('Upload one or more images for the product gallery')
+                    ->disk('public')
+                    ->columnSpan('full')
+                    ->required()
+                    ->afterStateUpdated(function ($state, callable $set) {
+                        $set('images', $state); // Uloží cesty do JSON pole v modelu
+                    }),
             ]);
     }
 
@@ -66,16 +73,15 @@ class ProductResource extends Resource
                     ->label('Product Name'),
                 Tables\Columns\TextColumn::make('price')
                     ->label('Price')
-                    ->money('usd'), // Můžeš použít měnu, např. 'usd'
+                    ->money('usd'),
                 Tables\Columns\TextColumn::make('sku')
                     ->label('SKU'),
                 Tables\Columns\BooleanColumn::make('in_stock')
                     ->label('In Stock')
-                    ->trueColor('success') // Označí zeleně, pokud je skladem
-                    ->falseColor('danger'), // Označí červeně, pokud není skladem
+                    ->trueColor('success')
+                    ->falseColor('danger'),
             ])
             ->filters([
-                // Můžeš přidat filtry podle potřeby, např. filtry podle dostupnosti
                 Tables\Filters\SelectFilter::make('in_stock')
                     ->options([
                         '1' => 'In Stock',
@@ -83,20 +89,13 @@ class ProductResource extends Resource
                     ]),
             ])
             ->actions([
-                Tables\Actions\EditAction::make(), // Akce pro úpravu produktu
+                Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(), // Akce pro hromadné smazání
+                    Tables\Actions\DeleteBulkAction::make(),
                 ]),
             ]);
-    }
-
-    public static function getRelations(): array
-    {
-        return [
-            // Pokud máš vztahy, přidej je sem
-        ];
     }
 
     public static function getPages(): array

@@ -1,8 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container py-10 mx-auto">
-    <h1 class="text-3xl font-semibold text-center mb-8 text-white p-10">Naše Produkty</h1>
+<div class="h-20"> </div>
+<div class="container py-10 mx-auto mt-8">
+    <h1 class="text-3xl font-semibold text-center mb-8 text-white mt-8 !important">Naše Produkty</h1>
 
     <!-- CSS pro Grid -->
     <style>
@@ -20,23 +21,12 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .product-card:hover {
-            transform: translateY(-10px); /* Efekt posunutí karty nahoru */
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); /* Zvýšení stínu při hoveru */
         }
 
         .product-card img {
             width: 100%;
             height: 200px;
             object-fit: cover;
-            transition: transform 0.3s ease; /* Přechod pro změnu velikosti obrázku */
-        }
-
-        .product-card:hover img {
-            transform: scale(1.1); /* Efekt zvětšení obrázku */
         }
 
         .product-card .product-description {
@@ -59,22 +49,34 @@
         }
 
         .btn-primary:hover {
-            background-color: #0099b3;
+            background-color: #0056b3;
         }
     </style>
 
     <div class="product-grid">
         @foreach($products as $product)
-            <div class="product-card">
-                <img src="https://via.placeholder.com/300" alt="{{ $product->name }}">
-                <div class="p-4">
-                    <h2 class="text-xl font-semibold mb-2 text-center">{{ $product->name }}</h2>
-                    <p class="text-gray-600 mb-4 product-description">{{ $product->description }}</p>
-                    <p class="font-bold text-lg text-blue-600 mb-4 text-center">Cena: ${{ $product->price }}</p>
-                    <a href="{{ route('products.show', $product->id) }}" class="btn-primary">Zobrazit detaily</a>
-                </div>
+        <div class="product-card">
+            <!-- Zobrazit skutečný obrázek z úložiště -->
+            <img id="main-image" src="{{ asset('storage/' . $product->images[0]) }}"
+            alt="{{ $product->name }}" class="product-image">
+
+            <div class="p-4">
+                <h2 class="text-xl font-semibold mb-2 text-center">{{ $product->name }}</h2>
+                <p class="text-gray-600 mb-4 product-description">{{ $product->description }}</p>
+                <p>
+                    Hodnocení:
+                    <strong>
+                    {{ number_format($product->averageRating(), 1) }} ⭐
+                    </strong>
+                    <span class="text-gray-400">({{ $product->reviews->count() }}x)</span>
+                </p>
+                <p class="font-bold text-lg text-blue-600 mb-4 text-center">Cena: {{ $product->price }} Kč</p>
+                <a href="{{ route('products.show', $product->id) }}" class="btn-primary">Zobrazit detaily</a>
             </div>
-        @endforeach
+        </div>
+    @endforeach
+
+
     </div>
 </div>
 @endsection

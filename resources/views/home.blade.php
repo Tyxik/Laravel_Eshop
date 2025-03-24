@@ -8,7 +8,7 @@
         
         <!-- Vylepšený nadpis -->
         <div class="flex items-start justify-center h-3/4 relative pt-14"> 
-            <h1 class="text-white text-5xl font-array text-center z-10 animate-flicker tracking-widest transition-all duration-500 ease-in-out hover:scale-110 hover:text-blue-400 glow-text">
+            <h1 class="text-white text-5xl  text-center z-10 animate-flicker tracking-widest transition-all duration-500 ease-in-out hover:scale-110 hover:text-blue-400 glow-text">
                 Vítejte na naší stránce!
             </h1>
         </div>
