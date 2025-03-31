@@ -18,7 +18,7 @@
                 <!-- Main Image (clickable square) -->
                 <div class="main-image mb-6">
                     @if (!empty($product->images))
-                    <img id="main-image" src="{{ asset('' . $product->images[0]) }}"
+                    <img id="main-image" src="{{ asset('storage/gallery' . $product->images[0]) }}"
                         alt="{{ $product->name }}"
                         class="product-image mx-auto object-cover rounded-lg"
                         style="width: 300px; height: 300px; cursor: pointer;">
@@ -32,8 +32,8 @@
                     </button>
                     <div class="overflow-hidden w-full">
                         <div class="flex transition-transform duration-300" id="image-carousel">
-                            @foreach ($product->images as $index => $image)
-                            <img src="{{ asset('storage/Gallery' . $image) }}"
+                           
+                            <img src="{{ asset('storage/gallery' . $image) }}"
                                 alt="{{ $product->name }}"
                                 class="rounded-lg cursor-pointer image-thumbnail"
                                 data-index="{{ $index }}"
@@ -236,6 +236,17 @@
                     z-index: 101;
                     /* Křížek bude nad obrázkem */
                 }
+                .confirmation-box {
+                    display: none;
+                    position: fixed;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    background: white;
+                    padding: 20px;
+                    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+                    border-radius: 8px;
+                }
             </style>
 
             <!-- Product Information Section -->
@@ -253,6 +264,7 @@
                         <span class="text-gray-400">({{ $product->reviews->count() }}x)</span>
                     </p>
                 </div>
+                <button type="button" class="inline-block px-6 py-2 mt-2 text-white bg-green-500 rounded-md hover:bg-green-600 transition" onclick="showConfirmationBox({{ $product->id }})">Přidat do košíku</button>
             </div>
         </div>
     </div>
@@ -319,4 +331,28 @@
 
         </div>
 </div>
+<!-- Confirmation Box -->
+<div id="confirmation-box-{{ $product->id }}" class="confirmation-box">
+    <p>Chcete zůstat na stránce nebo přejít do košíku?</p>
+    <div class="btn-container">
+        <form action="{{ route('cart.add', ['productId' => $product->id]) }}" method="POST">
+            @csrf
+            <input type="hidden" name="stay" value="true">
+            <button type="submit" class="btn" onclick="hideConfirmationBox({{ $product->id }})">Zůstat na stránce</button>
+        </form>
+        <a href="{{ route('cart.index') }}" class="btn">Přejít do košíku</a>
+    </div>
+</div>
+
+</div>
+
+<script>
+function showConfirmationBox(productId) {
+    document.getElementById('confirmation-box-' + productId).style.display = 'block';
+}
+
+function hideConfirmationBox(productId) {
+    document.getElementById('confirmation-box-' + productId).style.display = 'none';
+}
+</script>
 @endsection

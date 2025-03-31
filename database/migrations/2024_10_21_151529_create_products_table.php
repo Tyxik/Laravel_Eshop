@@ -18,7 +18,7 @@ return new class extends Migration
             $table->decimal('price', 8, 2);
             $table->string('sku')->unique();
             $table->integer('in_stock');
-            $table->json('images'); // Přidání pole pro soubory
+            $table->json('images')->nullable(); // Umožnění NULL hodnoty
             $table->timestamps();
         });
     }
