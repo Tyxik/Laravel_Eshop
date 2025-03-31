@@ -32,7 +32,7 @@
                     </button>
                     <div class="overflow-hidden w-full">
                         <div class="flex transition-transform duration-300" id="image-carousel">
-                           
+                            @foreach ($product->g as $index => $image)
                             <img src="{{ asset('storage/gallery' . $image) }}"
                                 alt="{{ $product->name }}"
                                 class="rounded-lg cursor-pointer image-thumbnail"
