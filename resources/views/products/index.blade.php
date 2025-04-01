@@ -1,11 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="h-20"> </div>
+<div class="h-20"></div>
 <div class="container py-10 mx-auto mt-8">
-    <h1 class="text-3xl font-semibold text-center mb-8 text-white mt-8 !important">Naše Produkty</h1>
+    <h1 class="text-3xl font-semibold text-center mb-8 text-black mt-8">Naše Produkty</h1>
 
-    <!-- CSS pro Grid -->
     <style>
         .product-grid {
             display: grid;
@@ -53,30 +52,39 @@
         }
     </style>
 
+    <form method="GET" action="{{ route('products.index') }}" class="mb-4">
+        <select name="sort_by" class="p-2 border border-gray-300 rounded">
+            <option value="name_asc" {{ request('sort_by') == 'name_asc' ? 'selected' : '' }}>Název (A-Z)</option>
+            <option value="name_desc" {{ request('sort_by') == 'name_desc' ? 'selected' : '' }}>Název (Z-A)</option>
+            <option value="price_asc" {{ request('sort_by') == 'price_asc' ? 'selected' : '' }}>Cena (nejnižší)</option>
+            <option value="price_desc" {{ request('sort_by') == 'price_desc' ? 'selected' : '' }}>Cena (nejvyšší)</option>
+        </select>
+        <button type="submit" class="btn-primary">Seřadit</button>
+    </form>
+
     <div class="product-grid">
         @foreach($products as $product)
         <div class="product-card">
-            <!-- Zobrazit skutečný obrázek z úložiště -->
-            <img id="main-image" src="{{ asset('storage/' . $product->images[0]) }}"
-            alt="{{ $product->name }}" class="product-image">
-
+            <img src="{{ isset($product->images[0]) ? asset('storage/gallery/' . $product->images[0]) : asset('storage/default.png') }}" 
+                 alt="{{ $product->name }}" 
+                 class="product-image">
             <div class="p-4">
                 <h2 class="text-xl font-semibold mb-2 text-center">{{ $product->name }}</h2>
                 <p class="text-gray-600 mb-4 product-description">{{ $product->description }}</p>
                 <p>
                     Hodnocení:
                     <strong>
-                    {{ number_format($product->averageRating(), 1) }} ⭐
+                        {{ $product->reviews->count() > 0 ? number_format($product->averageRating(), 1) . ' ⭐' : 'Neohodnoceno' }}
                     </strong>
-                    <span class="text-gray-400">({{ $product->reviews->count() }}x)</span>
+                    <span class="text-gray-400">
+                        ({{ $product->reviews->count() }}x)
+                    </span>
                 </p>
                 <p class="font-bold text-lg text-blue-600 mb-4 text-center">Cena: {{ $product->price }} Kč</p>
                 <a href="{{ route('products.show', $product->id) }}" class="btn-primary">Zobrazit detaily</a>
             </div>
         </div>
-    @endforeach
-
-
+        @endforeach
     </div>
 </div>
 @endsection
