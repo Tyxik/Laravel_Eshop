@@ -41,12 +41,11 @@ class ProductController extends Controller
             {
                    $product = Product::findOrFail($id);
 
-                // Get related products (you can adjust the logic to suit your needs)
-                    $relatedProducts = Product::where('id', '!=', $product->id)
-                    ->inRandomOrder()
-                    ->take(10)
-                    ->get();
-
+                   $relatedProducts = Product::where('category_id', $product->category_id)
+                   ->where('id', '!=', $product->id)
+                   ->inRandomOrder()
+                   ->take(10)
+                   ->get();
 
                 // Předá produkt do view
                 return view('products.show', compact('product','relatedProducts'));

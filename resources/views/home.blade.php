@@ -1,21 +1,40 @@
 @extends('layouts.app')
 
 @section('content')
-    <!-- Hero Section with Image and Gradient -->
-    <div class="relative h-screen">
-        <img src="https://www.akc.org/wp-content/uploads/2009/01/Cavalier-King-Charles-Spaniel-head-portrait-outdoors.jpg" alt="Vítejte" class="object-cover w-full h-3/4 z-10">
-        <div class="absolute inset-0 bg-gradient-to-b from-black to-transparent opacity-50"></div>
+   <!-- Hero Section with Image and Gradient -->
+<div class="relative h-screen">
+    <!-- Hodinky obrázek -->
+    <img src="http://127.0.0.1:8000/images/pozadi.jpg" alt="Vítejte" class="object-cover w-full h-full z-10">
+    
+    <!-- Gradient overlay (šedý přechod pro lepší kontrast) -->
+    <div class="absolute inset-0 bg-gradient-to-b from-gray-800 via-gray-500 to-transparent opacity-60"></div>
+    
+    <!-- Vylepšený nadpis a text -->
+    <div class="flex flex-col items-center justify-center h-full absolute top-0 left-0 right-0 bottom-0 z-20">
+        <!-- Nadpis -->
+        <h1 class="text-yellow-500 text-5xl font-bold z-10 animate-flicker tracking-widest transition-all duration-500 ease-in-out hover:scale-110 hover:text-yellow-400">
+            Vítejte na naší stránce!
+        </h1>
         
-        <!-- Vylepšený nadpis -->
-        <div class="flex items-start justify-center h-3/4 relative pt-14"> 
-            <h1 class="text-white text-5xl  text-center z-10 animate-flicker tracking-widest transition-all duration-500 ease-in-out hover:scale-110 hover:text-blue-400 glow-text">
-                Vítejte na naší stránce!
-            </h1>
+        <!-- Text (se změněným kontrastem a zvětšeným fontem) -->
+        <p class="bg-black bg-opacity-70 text-white text-lg mt-4 z-10 opacity-90 max-w-lg px-4 text-center rounded-lg py-2 shadow-lg">
+            Objevte elegantní a kvalitní hodinky, které dokonale doplní váš styl. Naše hodinky jsou kombinací preciznosti a designu.
+        </p>
+        <!-- Tlačítka -->
+        <div class="mt-8 flex space-x-4 z-10">
+            <!-- Tlačítko pro přechod na Products -->
+            <a href="/products" class="bg-yellow-500 text-white px-6 py-3 rounded-full text-lg font-semibold hover:bg-yellow-600 transition-all duration-300 ease-in-out">
+                Prozkoumat produkty
+            </a>
+            <!-- Tlačítko pro posunutí na Why Choose Us -->
+            <a href="#why-choose-us" class="bg-transparent border-2 bg-white text-black px-6 py-3 rounded-full text-lg font-semibold hover:bg-yellow-500 hover:text-black transition-all duration-300 ease-in-out">
+                Proč si nás vybrat?
+            </a>
         </div>
     </div>
-
+</div>
     <!-- Why Choose Us Section -->
-    <div class="py-10 text-center bg-gray-100 dark:bg-gray-800">
+    <div id="why-choose-us" class="py-10 text-center bg-gray-100 dark:bg-gray-800">
         <h2 class="text-3xl font-Array text-gray-900 dark:text-white">Proč nakupovat u nás?</h2>
         <p class="mt-4 text-lg text-gray-700 dark:text-gray-300">Nabízíme nejlepší produkty za nejlepší ceny!</p>
         <div class="mt-6 flex flex-wrap justify-center gap-6">

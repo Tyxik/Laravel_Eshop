@@ -18,7 +18,7 @@
                 <!-- Main Image (clickable square) -->
                 <div class="main-image mb-6">
                     @if (!empty($product->images))
-                    <img id="main-image" src="{{ asset('storage/' . $product->images[0]) }}"
+                    <img id="main-image" src="{{ asset('storage/gallery' . $product->images[0]) }}"
                         alt="{{ $product->name }}"
                         class="product-image mx-auto object-cover rounded-lg"
                         style="width: 300px; height: 300px; cursor: pointer;">

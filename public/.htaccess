@@ -19,3 +19,10 @@
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ index.php [L]
 </IfModule>
+
+
+# Allow access to the storage folder
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteRule ^storage/(.*)$ public/storage/$1 [L]
+</IfModule>
