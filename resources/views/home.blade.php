@@ -18,7 +18,7 @@
         
         <!-- Text (se změněným kontrastem a zvětšeným fontem) -->
         <p class="bg-black bg-opacity-70 text-white text-lg mt-4 z-10 opacity-90 max-w-lg px-4 text-center rounded-lg py-2 shadow-lg">
-            Naše hodinky jsou tak přesné, že přestanete chodit pozdě… ale jen pokud si je nasadíte!
+           Naše hodinky jsou tak přesné, že už nikdy nebudete chodit pozdě... pokud je teda budete nosit!
         </p>
         <!-- Tlačítka -->
         <div class="mt-8 flex space-x-4 z-10">

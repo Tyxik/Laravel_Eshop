@@ -10,49 +10,53 @@
         </a>
     </div>
 
-    <div class="product-details bg-white p-6 shadow-lg rounded-lg mx-auto w-full lg:w-4/5 flex justify-between">
-        <!-- Product Image Section -->
-        <div class="flex">
-            <!-- Product Image Section -->
-            <div class="w-full lg:w-1/2 pr-4">
-                <!-- Main Image (clickable square) -->
-                <div class="main-image mb-6">
-                    @if (!empty($product->images))
-                    <img id="main-image" src="{{ asset('storage/gallery' . $product->images[0]) }}"
-                        alt="{{ $product->name }}"
-                        class="product-image mx-auto object-cover rounded-lg"
-                        style="width: 300px; height: 300px; cursor: pointer;">
+   <!-- filepath: c:\Users\tylma\Desktop\webovkos\LLLL\Laravel_Eshop\resources\views\products\show.blade.php -->
+<div class="product-details bg-white p-6 shadow-lg rounded-lg mx-auto w-full lg:w-4/5 flex justify-between">
+    <!-- Product Image Section -->
+    <div class="flex flex-col space-y-6"> <!-- Přidáno space-y-6 pro mezery mezi prvky -->
+        <!-- Main Image Section -->
+        <div class="w-full lg:w-1/2 pr-4">
+            <!-- Main Image (clickable square) -->
+            <div class="main-image mb-6">
+                @if (!empty($product->images))
+                <img id="main-image" src="{{ asset('storage/gallery/' . $product->images[0]) }}" 
+                    alt="{{ $product->name }}" 
+                    class="product-image mx-auto object-cover rounded-lg"
+                    style="width: 300px; height: 300px; cursor: pointer;">
+                @endif
+            </div>
+        </div>
+
+        <!-- Additional Product Images (Carousel) -->
+        <div class="flex justify-between mt-4 relative">
+            <button id="prev-image" class="prev-arrow absolute left-0 top-1/2 transform -translate-y-1/2 bg-gray-300 p-2 rounded-full">
+                &lt;
+            </button>
+            <div class="overflow-hidden w-full">
+                <div class="flex transition-transform duration-300 space-x-4" id="image-carousel"> <!-- Přidáno space-x-4 -->
+                    @if (!empty($product->images) && count($product->images) > 0)
+                        @foreach ($product->images as $index => $image)
+                        <img src="{{ asset('storage/gallery/' . $image) }}" 
+                            alt="{{ $product->name }}" 
+                            class="rounded-lg cursor-pointer image-thumbnail"
+                            data-index="{{ $index }}"
+                            style="width: 80px; height: 80px; object-fit: cover;">
+                        @endforeach
+                    @else
+                        <!-- Náhradní obrázek -->
+                        <img src="{{ asset('storage/gallery/default-image.jpg') }}" 
+                            alt="No image available" 
+                            class="rounded-lg cursor-pointer image-thumbnail"
+                            style="width: 80px; height: 80px; object-fit: cover;">
                     @endif
                 </div>
-
-                <!-- Additional Product Images (Carousel) -->
-                <div class="flex justify-between mt-4 relative">
-                    <button id="prev-image" class="prev-arrow absolute left-0 top-1/2 transform -translate-y-1/2 bg-gray-300 p-2 rounded-full">
-                        &lt;
-                    </button>
-                    <div class="overflow-hidden w-full">
-                        <div class="flex transition-transform duration-300" id="image-carousel">
-                            @if (!empty($product->images) && count($product->images) > 0)
-                                @foreach ($product->images as $index => $image)
-                                    <img src="{{ asset('storage/gallery' . $image) }}"
-                                        alt="{{ $product->name }}"
-                                        class="rounded-lg cursor-pointer image-thumbnail"
-                                        data-index="{{ $index }}"
-                                        style="width: 80px; height: 80px; object-fit: cover; max-width: 80px; max-height: 80px;">
-                                @endforeach
-                            @else
-                                <!-- Náhradní obrázek -->
-                                <img src="{{ asset('storage/default-image.jpg') }}"
-                                    alt="No image available"
-                                    class="rounded-lg cursor-pointer image-thumbnail"
-                                    style="width: 80px; height: 80px; object-fit: cover; max-width: 80px; max-height: 80px;">
-                            @endif
-                        </div>
-                    </div>
-                    <button id="next-image" class="next-arrow absolute right-0 top-1/2 transform -translate-y-1/2 bg-gray-300 p-2 rounded-full">
-                        &gt;
-                    </button>
-                </div>
+            </div>
+            <button id="next-image" class="next-arrow absolute right-0 top-1/2 transform -translate-y-1/2 bg-gray-300 p-2 rounded-full">
+                &gt;
+            </button>
+        </div>
+    </div>
+</div>
 
             <!-- Modal for Fullscreen Image View -->
             <div id="image-modal" class="fixed inset-0 bg-black bg-opacity-75 flex justify-center items-center z-50 hidden">
@@ -78,7 +82,7 @@
 
                 // Update the main image based on the index
                 function updateMainImage(index) {
-                    mainImage.src = '{{ asset('storage') }}/' + images[index]; // Correct the image path concatenation
+                    mainImage.src = '{{ asset('storage/gallery') }}/' + images[index]; // Correct the image path concatenation
                 }
 
                 // Navigate to the next image
@@ -184,8 +188,8 @@
 
                 /* Zajištění, že obrázky mají pevnou velikost */
                 .image-thumbnail {
-                    width: 80px;
-                    height: 80px;
+                    width: 300px;
+                    height: 300px;
                     object-fit: cover;
                     max-width: 80px;
                     max-height: 80px;

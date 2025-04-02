@@ -22,6 +22,16 @@ class Product extends Model
     public function averageRating()
     {
         return $this->reviews()->avg('rating') ?? 0;
+
+
     }
+
+    protected $casts = [
+        'images' => 'array',  // Umožňuje, že se 'images' bude chovat jako pole
+    ];
+
+    protected $attributes = [
+        'images' => '[]',  // Výchozí hodnota pro 'images' je prázdné pole
+    ];
 
 }
