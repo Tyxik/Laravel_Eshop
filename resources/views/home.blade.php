@@ -18,12 +18,12 @@
         
         <!-- Text (se změněným kontrastem a zvětšeným fontem) -->
         <p class="bg-black bg-opacity-70 text-white text-lg mt-4 z-10 opacity-90 max-w-lg px-4 text-center rounded-lg py-2 shadow-lg">
-            Objevte elegantní a kvalitní hodinky, které dokonale doplní váš styl. Naše hodinky jsou kombinací preciznosti a designu.
+            Naše hodinky jsou tak přesné, že přestanete chodit pozdě… ale jen pokud si je nasadíte!
         </p>
         <!-- Tlačítka -->
         <div class="mt-8 flex space-x-4 z-10">
             <!-- Tlačítko pro přechod na Products -->
-            <a href="/products" class="bg-yellow-500 text-white px-6 py-3 rounded-full text-lg font-semibold hover:bg-yellow-600 transition-all duration-300 ease-in-out">
+            <a href="/products" class="bg-yellow-500 text-white px-6 py-3 rounded-full text-lg font-semibold hover:bg-yellow-300 transition-all duration-300 ease-in-out">
                 Prozkoumat produkty
             </a>
             <!-- Tlačítko pro posunutí na Why Choose Us -->

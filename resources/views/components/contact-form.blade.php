@@ -14,6 +14,6 @@
             <label for="message" class="block text-sm font-medium text-gray-700">Zpráva</label>
             <textarea id="message" name="message" class="border border-gray-300 rounded-md w-full p-2" required></textarea>
         </div>
-        <button type="submit" class="bg-blue-500 text-white rounded-md px-4 py-2 hover:bg-blue-600 transition duration-200">Odeslat</button>
+        <button type="submit" class="bg-yellow-500 text-white rounded-md px-4 py-2 hover:bg-yellow-300 transition duration-200">Odeslat</button>
     </form>
 </div>

@@ -322,7 +322,7 @@
                             <label for="comment" class="block text-lg font-medium text-gray-700">Comment</label>
                             <textarea name="comment" id="comment" rows="3" required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm"></textarea>
                         </div>
-                        <button type="submit" class="bg-blue-500 text-white py-2 px-6 rounded-md hover:bg-blue-600">
+                        <button type="submit" class="bg-yellow-500 text-white py-2 px-6 rounded-md hover:bg-yellow-300">
                             Submit Review
                         </button>
                     </form>
@@ -330,7 +330,7 @@
                 @endif
                 @else
                 <p class="mt-4 text-gray-500">
-                    <a href="{{ route('login') }}" class="text-blue-500 hover:underline">Log in</a> to leave a review.
+                    <a href="{{ route('login') }}" class="text-yellow-500 hover:underline">Log in</a> to leave a review.
                 </p>
                 @endauth
             </div>

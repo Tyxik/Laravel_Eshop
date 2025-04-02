@@ -40,15 +40,15 @@
             display: block;
             text-align: center;
             padding: 10px;
-            background-color: #007bff;
+            background-color: #ecdd86;
             color: white;
             border-radius: 4px;
             text-decoration: none;
-            transition: background-color 0.3s ease;
+            transition: background-color 0.3s ease;     
         }
 
         .btn-primary:hover {
-            background-color: #0056b3;
+            background-color: #ffd343ec;
         }
     </style>
 
@@ -66,8 +66,8 @@
         @foreach($products as $product)
         <div class="product-card">
             <img src="{{ isset($product->images[0]) ? asset('storage/gallery/' . $product->images[0]) : asset('storage/default.png') }}" 
-                 alt="{{ $product->name }}" 
-                 class="product-image">
+            alt="{{ $product->name }}" 
+            class="product-image">
             <div class="p-4">
                 <h2 class="text-xl font-semibold mb-2 text-center">{{ $product->name }}</h2>
                 <p class="text-gray-600 mb-4 product-description">{{ $product->description }}</p>
@@ -80,7 +80,7 @@
                         ({{ $product->reviews->count() }}x)
                     </span>
                 </p>
-                <p class="font-bold text-lg text-blue-600 mb-4 text-center">Cena: {{ $product->price }} Kč</p>
+                <p class="font-bold text-lg text-black mb-4 text-center">Cena: {{ $product->price }} Kč</p>
                 <a href="{{ route('products.show', $product->id) }}" class="btn-primary">Zobrazit detaily</a>
             </div>
         </div>

@@ -22,7 +22,7 @@
                             </div>
                         </div>
                         <div class="p-4">
-                            <a href="{{ route('products.show', $product->id) }}" class="btn btn-primary inline-block px-6 py-2 text-white bg-blue-500 rounded-md hover:bg-blue-600 transition">Zobrazit detaily</a>
+                            <a href="{{ route('products.show', $product->id) }}" class="btn btn-primary inline-block px-6 py-2 text-white bg-yellow-500 rounded-md hover:bg-yellow-300 transition">Zobrazit detaily</a>
                         </div>
                     </div>
                 </div>

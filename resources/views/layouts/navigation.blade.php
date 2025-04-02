@@ -5,23 +5,25 @@
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('home') }}">
-                        <x-application-logo class="block h-9 w-auto fill-current text-gray-800 dark:text-gray-200" />
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-9 w-9 text-gray-800 dark:text-gray-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 1m5-1a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
                     </a>
                 </div>
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('home')" :active="request()->routeIs('home')">
-                        {{ __('Home') }}
+                    <x-nav-link :href="route('home')" :active="request()->routeIs('home')" >
+                        {{ __('Domů') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('products.index')" :active="request()->routeIs('products.index')">
-                        {{ __('Products') }}
+                    <x-nav-link :href="route('products.index')" :active="request()->routeIs('products.index')" >
+                        {{ __('Produkty') }}
                     </x-nav-link>
                     <x-nav-link :href="route('contact.index')" :active="request()->routeIs('contact.index')">
-                        {{ __('Contact') }}
+                        {{ __('Kontakt') }}
                     </x-nav-link>
                     <x-nav-link :href="route('questions.index')" :active="request()->routeIs('questions.index')">
-                        {{ __('Questions') }}
+                        {{ __('Q&A') }}
                     </x-nav-link>
                     <form method="GET" action="{{ route('products.search') }}" class="relative">
                         <input type="text" name="query" placeholder="Search..." class="border rounded-md p-2 mt-3" />

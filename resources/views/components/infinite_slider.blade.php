@@ -17,7 +17,7 @@
             @endif
             <h3 class="text-xl font-semibold text-gray-800">{{ $product->name }}</h3>
             <p class="text-lg text-gray-600">{{ $product->price }} Kč</p>
-            <a href="{{ route('products.show', $product->id) }}" class="text-blue-500 hover:text-blue-600">View Product</a>
+            <a href="{{ route('products.show', $product->id) }}" class="text-yellow-500 hover:text-yellow-300">View Product</a>
         </div>
         @endforeach
     </div>
