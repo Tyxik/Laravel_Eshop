@@ -34,21 +34,20 @@
             </button>
             <div class="overflow-hidden w-full">
                 <div class="flex transition-transform duration-300 space-x-4" id="image-carousel"> <!-- Přidáno space-x-4 -->
-                    @if (!empty($product->images) && count($product->images) > 0)
-                        @foreach ($product->images as $index => $image)
-                        <img src="{{ asset('storage/gallery/' . $image) }}" 
+                    @if(count($product->images) > 0)
+                    @foreach ($product->images as $index => $image)
+                        <img src="{{ asset('storage/gallery' . $image) }}" 
                             alt="{{ $product->name }}" 
                             class="rounded-lg cursor-pointer image-thumbnail"
                             data-index="{{ $index }}"
                             style="width: 80px; height: 80px; object-fit: cover;">
-                        @endforeach
-                    @else
-                        <!-- Náhradní obrázek -->
-                        <img src="{{ asset('storage/gallery/default-image.jpg') }}" 
-                            alt="No image available" 
-                            class="rounded-lg cursor-pointer image-thumbnail"
-                            style="width: 80px; height: 80px; object-fit: cover;">
-                    @endif
+                    @endforeach
+                @else
+                    <img src="{{ asset('storage/gallery/default-image.jpg') }}" 
+                         alt="No image available" 
+                         class="rounded-lg cursor-pointer image-thumbnail"
+                         style="width: 80px; height: 80px; object-fit: cover;">
+                @endif
                 </div>
             </div>
             <button id="next-image" class="next-arrow absolute right-0 top-1/2 transform -translate-y-1/2 bg-gray-300 p-2 rounded-full">
@@ -365,5 +364,87 @@ function showConfirmationBox(productId) {
 function hideConfirmationBox(productId) {
     document.getElementById('confirmation-box-' + productId).style.display = 'none';
 }
+</script>
+<script>
+    console.log(@json($product->images)); // Tady zkontroluj, co ti vrací
+</script>
+
+<script>
+    const images = @json($product->images); // All product images from the backend
+    let currentIndex = 0; // Start with the first image
+    const totalImages = images.length;
+
+    const mainImage = document.getElementById('main-image');
+    const imageCarousel = document.getElementById('image-carousel');
+    const nextButton = document.getElementById('next-image');
+    const prevButton = document.getElementById('prev-image');
+
+    // Update the main image based on the index
+    function updateMainImage(index) {
+        mainImage.src = '{{ asset('storage/gallery') }}/' + images[index]; // Correct the image path concatenation
+    }
+
+    // Navigate to the next image
+    nextButton.addEventListener('click', function() {
+        if (currentIndex < totalImages - 1) {
+            currentIndex++;
+        } else {
+            currentIndex = 0; // Loop back to the first image
+        }
+        updateMainImage(currentIndex);
+        updateCarouselPosition();
+    });
+
+    // Navigate to the previous image
+    prevButton.addEventListener('click', function() {
+        if (currentIndex > 0) {
+            currentIndex--;
+        } else {
+            currentIndex = totalImages - 1; // Loop back to the last image
+        }
+        updateMainImage(currentIndex);
+        updateCarouselPosition();
+    });
+
+    // Update the position of the carousel based on currentIndex
+    function updateCarouselPosition() {
+        const offset = -currentIndex * 80; // Shift the carousel by 80px for each image
+        imageCarousel.style.transform = `translateX(${offset}px)`;
+    }
+
+    // Thumbnail image click functionality
+    const thumbnails = document.querySelectorAll('.image-thumbnail');
+    thumbnails.forEach((thumbnail) => {
+        thumbnail.addEventListener('click', function() {
+            const index = parseInt(this.getAttribute('data-index'));
+            currentIndex = index;
+            updateMainImage(currentIndex);
+            updateCarouselPosition();
+        });
+    });
+
+    // Modal functionality to display clicked image in fullscreen
+    const modal = document.getElementById('image-modal');
+    const modalImage = document.getElementById('modal-image');
+    const closeModal = document.getElementById('close-modal');
+
+    // Show the modal with the clicked image
+    mainImage.addEventListener('click', function() {
+        const imageUrl = this.src;
+        modalImage.src = imageUrl;
+        modal.classList.remove('hidden');
+    });
+
+    // Close the modal when user clicks on close button
+    closeModal.addEventListener('click', function() {
+        modal.classList.add('hidden');
+    });
+
+    // Close the modal if user clicks outside the image
+    modal.addEventListener('click', function(event) {
+        if (event.target === modal) {
+            modal.classList.add('hidden');
+        }
+    });
 </script>
 @endsection

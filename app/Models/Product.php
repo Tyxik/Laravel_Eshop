@@ -12,7 +12,7 @@ class Product extends Model
     protected $primaryKey = 'id';
 
     protected $fillable = [
-        'name','image', 'description', 'price', 'sku', 'in_stock'
+        'name','images', 'description', 'price', 'sku', 'in_stock'
     ];
     public function reviews()
     {
