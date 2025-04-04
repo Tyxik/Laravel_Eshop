@@ -12,7 +12,7 @@
 <div class="flex overflow-x-auto space-x-2 mb-4">
     @if($product->images && count($product->images) > 0)
         @foreach($product->images as $image)
-            <img src="{{ asset('storage/gallery' . $image) }}" alt="{{ $product->name }}" class="object-cover w-24 h-24 rounded-md">
+            <img src="{{ asset('storage/' . $image) }}" alt="{{ $product->name }}" class="object-cover w-24 h-24 rounded-md">
         @endforeach
     @else
         <!-- Náhradní obrázek, pokud nejsou obrázky -->

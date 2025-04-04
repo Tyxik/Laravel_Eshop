@@ -65,7 +65,7 @@
     <div class="product-grid">
         @foreach($products as $product)
         <div class="product-card">
-            <img src="{{ isset($product->images[0]) ? asset('storage/gallery/' . $product->images[0]) : asset('storage/default.png') }}" 
+            <img src="{{ isset($product->images[0]) ? asset('storage/' . $product->images[0]) : asset('storage/default.png') }}" 
             alt="{{ $product->name }}" 
             class="product-image">
             <div class="p-4">

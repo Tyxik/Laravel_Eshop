@@ -11,7 +11,7 @@
         @foreach($products as $product)
         <div class="product-item min-w-[200px] bg-white shadow-md rounded-lg p-4">
             @if(isset($product->images[0]))
-                <img id="main-image" src="{{ asset('storage/gallery/' . $product->images[0]) }}" alt="{{ $product->name }}" class="w-full h-48 object-cover rounded-lg mb-4">
+                <img id="main-image" src="{{ asset('storage/' . $product->images[0]) }}" alt="{{ $product->name }}" class="w-full h-48 object-cover rounded-lg mb-4">
             @else
                 <img id="main-image" src="{{ asset('storage/default.jpg') }}" alt="No Image" class="w-full h-48 object-cover rounded-lg mb-4">
             @endif

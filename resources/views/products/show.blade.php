@@ -19,7 +19,7 @@
             <!-- Main Image (clickable square) -->
             <div class="main-image mb-6">
                 @if (!empty($product->images))
-                <img id="main-image" src="{{ asset('storage/gallery/' . $product->images[0]) }}" 
+                <img id="main-image" src="{{ asset('storage/' . $product->images[0]) }}" 
                     alt="{{ $product->name }}" 
                     class="product-image mx-auto object-cover rounded-lg"
                     style="width: 300px; height: 300px; cursor: pointer;">
@@ -36,14 +36,14 @@
                 <div class="flex transition-transform duration-300 space-x-4" id="image-carousel"> <!-- Přidáno space-x-4 -->
                     @if(count($product->images) > 0)
                     @foreach ($product->images as $index => $image)
-                        <img src="{{ asset('storage/gallery' . $image) }}" 
+                        <img src="{{ asset('storage/' . $image) }}" 
                             alt="{{ $product->name }}" 
                             class="rounded-lg cursor-pointer image-thumbnail"
                             data-index="{{ $index }}"
                             style="width: 80px; height: 80px; object-fit: cover;">
                     @endforeach
                 @else
-                    <img src="{{ asset('storage/gallery/default-image.jpg') }}" 
+                    <img src="{{ asset('storage/default-image.jpg') }}" 
                          alt="No image available" 
                          class="rounded-lg cursor-pointer image-thumbnail"
                          style="width: 80px; height: 80px; object-fit: cover;">
@@ -81,7 +81,7 @@
 
                 // Update the main image based on the index
                 function updateMainImage(index) {
-                    mainImage.src = '{{ asset('storage/gallery') }}/' + images[index]; // Correct the image path concatenation
+                    mainImage.src = '{{ asset('storage/') }}/' + images[index]; // Correct the image path concatenation
                 }
 
                 // Navigate to the next image
