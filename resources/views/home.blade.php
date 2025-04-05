@@ -12,25 +12,22 @@
     <!-- Vylepšený nadpis a text -->
     <div class="flex flex-col items-center justify-center h-full absolute top-0 left-0 right-0 bottom-0 z-20">
         <!-- Nadpis -->
-        <h1 class="text-yellow-500 text-5xl font-BebasNeue font-bold z-10 animate-flicker tracking-widest transition-all duration-500 ease-in-out hover:scale-110 hover:text-yellow-400"
+        <h1 class="text-blue-500 text-5xl font-BebasNeue font-bold z-10 animate-flicker tracking-widest transition-all duration-500 ease-in-out hover:scale-110 hover:text-darkblue-400"
         style="text-shadow: 1px 1px 2px black;" data-aos="zoom-in" data-aos-duration="1500">
         Vítejte na naší stránce!
         </h1>
         <!-- Text (se změněným kontrastem a zvětšeným fontem) -->
-        <p class="bg-black bg-opacity-70 text-white text-lg mt-4 z-10 opacity-90 max-w-lg px-4 text-center rounded-lg py-2 shadow-lg transition-all duration-700 ease-in-out transform hover:scale-105 hover:rotate-1 hover:shadow-2xl group relative cursor-pointer overflow-hidden" data-aos="fade-up" data-aos-duration="1500">
+        <p class="bg-black bg-opacity-70 text-white text-lg mt-4 z-10 opacity-90 max-w-lg px-4 text-center rounded-lg py-2 shadow-lg transition-all duration-700 ease-in-out transform hover:scale-105 hover:rotate-1 hover:shadow-2xl group relative overflow-hidden" data-aos="fade-up" data-aos-duration="1500">
             <span class="block transition-all duration-700 ease-in-out group-hover:opacity-0">
-                Naše hodinky jsou tak přesné, že už nikdy nebudete chodit pozdě.
-            </span>
-            <span class="absolute inset-0 flex items-center justify-center text-center px-4 opacity-0 group-hover:opacity-100 transition-all duration-700 ease-in-out transform group-hover:translate-y-0 translate-y-4">
-                Pokud je teda budete nosit! 😄
+            Každý trénink je krokem k silnější verzi tebe. Vyber si to nejlepší vybavení pro maximální výsledky!
             </span>
         </p>
         <!-- Tlačítka -->
         <div class="mt-8 flex justify-center z-10">
             <a href="/products" 
-               class="bg-yellow-500 text-white px-6 py-3 rounded-full text-lg font-semibold hover:bg-yellow-300 transition-all duration-300 ease-in-out"
+               class="bg-blue-500 text-white px-6 py-3 rounded-full text-lg font-semibold hover:bg-blue-300 transition-all duration-300 ease-in-out"
                style="text-shadow: 1px 1px 2px black;">
-                Prozkoumat 
+                Produkty 
             </a>
         </div>
     </div>
@@ -38,7 +35,7 @@
 
     <!-- Why Choose Us Section -->
     <div id="why-choose-us" class="py-10 text-center bg-gray-100 dark:bg-gray-800" data-aos="fade-up" data-aos-duration="1500">
-        <h2 class="text-3xl font-Array text-gray-900 dark:text-white">Proč nakupovat u nás?</h2>
+        <h2 class="text-3xl font-semibold font-BebasNeue text-gray-900 dark:text-white">Proč nakupovat u nás?</h2>
         <p class="mt-4 text-lg text-gray-700 dark:text-gray-300">Nabízíme nejlepší produkty za nejlepší ceny!</p>
         <div class="mt-6 flex flex-wrap justify-center gap-6">
             <div class="bg-white dark:bg-gray-700 shadow-md rounded-lg p-6 max-w-xs" data-aos="fade-right" data-aos-duration="1500">

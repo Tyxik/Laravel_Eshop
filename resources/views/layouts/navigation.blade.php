@@ -12,22 +12,22 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('home')" :active="request()->routeIs('home')">
-                        {{ __('Domů') }}
-                    </x-nav-link>
-                    <x-nav-link :href="route('products.index')" :active="request()->routeIs('products.index')">
-                        {{ __('Produkty') }}
-                    </x-nav-link>
-                    <x-nav-link :href="route('contact.index')" :active="request()->routeIs('contact.index')">
-                        {{ __('Kontakt') }}
-                    </x-nav-link>
-                    <x-nav-link :href="route('questions.index')" :active="request()->routeIs('questions.index')">
-                        {{ __('Q&A') }}
-                    </x-nav-link>
+                <a href="{{ route('home') }}" class="{{ request()->routeIs('home') ? 'text-blue-500 border-b-2 border-blue-500' : 'text-gray-500 hover:text-gray-700' }} flex items-center h-full">
+    {{ __('Domů') }}
+</a>
+<a href="{{ route('products.index') }}" class="{{ request()->routeIs('products.index') ? 'text-blue-500 border-b-2 border-blue-500' : 'text-gray-500 hover:text-gray-700' }} flex items-center h-full">
+    {{ __('Produkty') }}
+</a>
+<a href="{{ route('contact.index') }}" class="{{ request()->routeIs('contact.index') ? 'text-blue-500 border-b-2 border-blue-500' : 'text-gray-500 hover:text-gray-700' }} flex items-center h-full">
+    {{ __('Kontakt') }}
+</a>
+<a href="{{ route('questions.index') }}" class="{{ request()->routeIs('questions.index') ? 'text-blue-500 border-b-2 border-blue-500' : 'text-gray-500 hover:text-gray-700' }} flex items-center h-full">
+    {{ __('Q&A') }}
+</a>
                     <form method="GET" action="{{ route('products.search') }}" class="relative">
-                        <input type="text" name="query" placeholder="Search..." class="border rounded-md p-2 mt-3 focus:ring-2 focus:ring-yellow-500 focus:outline-none" />
+                        <input type="text" name="query" placeholder="Search..." class="border rounded-md p-2 mt-3 focus:ring-2 focus:ring-blue-500 focus:outline-none" />
                         <button type="submit" class="absolute right-0 top-0 mt-6 mr-2">
-                            <svg class="h-6 w-6 text-gray-500 hover:text-yellow-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                            <svg class="h-6 w-6 text-gray-500 hover:text-blue-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                                 <path fill="currentColor" d="M12.3 13.4c1.2-1.5 2-3.4 2-5.4C14.3 3.6 11.3 0 7 0S-0.3 3.6-0.3 7c0 3.4 2.7 6 6 6 2.1 0 3.9-.8 5.4-2 1.4 1.5 2.4 3.5 2.4 5.6h1.5c0-2.8-1-5.4-2.6-7.3zm-5.3 0C5 14.3 3 16 0 16c1.2 2 3.6 2 6 0 1-1 2-3 2-5.5zm1-6.4C8 3.5 9 2 9 2c1 0 3 1.4 3 2.1 0 .5-.4 1-1 1-.5 0-1 0-1-.5 0 0-.5-.5-1-1z" />
                             </svg>
                         </button>

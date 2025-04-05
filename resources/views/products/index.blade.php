@@ -40,7 +40,7 @@
             display: block;
             text-align: center;
             padding: 10px;
-            background-color: #ecdd86;
+            background-color: blue; 
             color: white;
             border-radius: 4px;
             text-decoration: none;
@@ -48,7 +48,7 @@
         }
 
         .btn-primary:hover {
-            background-color: #ffd343ec;
+            background-color: blue;
         }
     </style>
 

@@ -47,83 +47,83 @@
         </div>
 
         <!-- Informace o produktu -->
-        <div class="w-full lg:w-1/2 flex flex-col justify-between">
-            <div>
-                <h1 class="text-4xl font-bold text-gray-800 mb-6">{{ $product->name }}</h1>
-                <p class="text-lg text-gray-600 mb-6">{{ $product->description }}</p>
-                <div class="text-lg font-medium text-gray-800 mb-4">
-                    <p><strong>Price: </strong>{{ $product->price }} Kč</p>
-                    <p><strong>SKU: </strong>{{ $product->sku }}</p>
+<div class="w-full lg:w-1/2 flex flex-col justify-between">
+    <div>
+        <h1 class="text-4xl font-bold text-gray-800 mb-6">{{ $product->name }}</h1>
+        <p class="text-lg text-gray-600 mb-6">{{ $product->description }}</p>
+        <div class="text-lg font-medium text-gray-800 mb-4">
+            <p><strong>Cena: </strong>{{ $product->price }} Kč</p>
+            <p><strong>SKU: </strong>{{ $product->sku }}</p>
+        </div>
+        <div class="text-lg font-medium text-gray-800 mb-6">
+            <p><strong>Na skladě: </strong>{{ $product->in_stock }}</p>
+            <p>
+                Hodnocení: <strong>{{ number_format($product->averageRating(), 1) }} ⭐</strong>
+                <span class="text-gray-400">({{ $product->reviews->count() }} recenzí)</span>
+            </p>
+        </div>
+    </div>
+    <div class="mt-6">
+        <button type="button" class="inline-block px-8 py-3 text-white bg-green-500 rounded-md hover:bg-green-600 transition w-full lg:w-auto" onclick="showConfirmationBox({{ $product->id }})">
+            Přidat do košíku
+        </button>
+    </div>
+</div>
+</div>
+
+<!-- Recenze -->
+<div class="p-8 m-8">
+    <div class="mt-8 p-6 bg-white shadow-lg rounded-lg">
+        <h2 class="text-2xl font-semibold text-gray-800 mb-4">Hodnocení zákazníků</h2>
+
+        @if($product->reviews->count() > 0)
+            @foreach($product->reviews as $review)
+                <div class="border-b border-gray-200 pb-4 mb-4">
+                    <p class="text-lg font-semibold">{{ $review->user->name ?? 'Neznámý uživatel' }}</p>
+                    <p class="text-yellow-500">⭐ {{ $review->rating }} / 5</p>
+                    <p class="text-gray-700">{{ $review->comment }}</p>
                 </div>
-                <div class="text-lg font-medium text-gray-800 mb-6">
-                    <p><strong>In Stock: </strong>{{ $product->in_stock }}</p>
-                    <p>
-                        Hodnocení: <strong>{{ number_format($product->averageRating(), 1) }} ⭐</strong>
-                        <span class="text-gray-400">({{ $product->reviews->count() }}x)</span>
-                    </p>
-                </div>
-            </div>
+            @endforeach
+        @else
+            <p class="text-gray-500">Zatím žádné recenze. Buďte první, kdo ohodnotí tento produkt!</p>
+        @endif
+
+        @auth
+            @php
+                $existingReview = $product->reviews->where('user_id', Auth::id())->first();
+            @endphp
+
+            @if(!$existingReview)
             <div class="mt-6">
-                <button type="button" class="inline-block px-8 py-3 text-white bg-green-500 rounded-md hover:bg-green-600 transition w-full lg:w-auto" onclick="showConfirmationBox({{ $product->id }})">
-                    Přidat do košíku
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Recenze -->
-    <div class="p-8 m-8">
-        <div class="mt-8 p-6 bg-white shadow-lg rounded-lg">
-            <h2 class="text-2xl font-semibold text-gray-800 mb-4">Customer Reviews</h2>
-
-            @if($product->reviews->count() > 0)
-                @foreach($product->reviews as $review)
-                    <div class="border-b border-gray-200 pb-4 mb-4">
-                        <p class="text-lg font-semibold">{{ $review->user->name ?? 'Neznámý uživatel' }}</p>
-                        <p class="text-yellow-500">⭐ {{ $review->rating }} / 5</p>
-                        <p class="text-gray-700">{{ $review->comment }}</p>
+                <h3 class="text-xl font-semibold text-gray-800 mb-2">Přidat recenzi</h3>
+                <form action="{{ route('reviews.store') }}" method="POST">
+                    @csrf
+                    <input type="hidden" name="product_id" value="{{ $product->id }}">
+                    <div class="mb-4">
+                        <label for="rating" class="block text-lg font-medium text-gray-700">Hodnocení</label>
+                        <select name="rating" id="rating" required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">
+                            <option value="5">⭐️⭐️⭐️⭐️⭐️ - Výborné</option>
+                            <option value="4">⭐️⭐️⭐️⭐️ - Dobré</option>
+                            <option value="3">⭐️⭐️⭐️ - Průměrné</option>
+                            <option value="2">⭐️⭐️ - Slabé</option>
+                            <option value="1">⭐️ - Hrozné</option>
+                        </select>
                     </div>
-                @endforeach
+                    <div class="mb-4">
+                        <label for="comment" class="block text-lg font-medium text-gray-700">Komentář</label>
+                        <textarea name="comment" id="comment" rows="3" required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm"></textarea>
+                    </div>
+                    <button type="submit" class="bg-blue-500 text-white py-2 px-6 rounded-md">Odeslat recenzi</button>
+                </form>
+            </div>
             @else
-                <p class="text-gray-500">No reviews yet. Be the first to review this product!</p>
+            <p class="text-lg font-semibold text-gray-600">Tento produkt jste již ohodnotili. Děkujeme za váš názor!</p>
             @endif
-
-            @auth
-                @php
-                    $existingReview = $product->reviews->where('user_id', Auth::id())->first();
-                @endphp
-
-                @if(!$existingReview)
-                <div class="mt-6">
-                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Add a Review</h3>
-                    <form action="{{ route('reviews.store') }}" method="POST">
-                        @csrf
-                        <input type="hidden" name="product_id" value="{{ $product->id }}">
-                        <div class="mb-4">
-                            <label for="rating" class="block text-lg font-medium text-gray-700">Rating</label>
-                            <select name="rating" id="rating" required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">
-                                <option value="5">⭐️⭐️⭐️⭐️⭐️ - Excellent</option>
-                                <option value="4">⭐️⭐️⭐️⭐️ - Good</option>
-                                <option value="3">⭐️⭐️⭐️ - Average</option>
-                                <option value="2">⭐️⭐️ - Poor</option>
-                                <option value="1">⭐️ - Terrible</option>
-                            </select>
-                        </div>
-                        <div class="mb-4">
-                            <label for="comment" class="block text-lg font-medium text-gray-700">Comment</label>
-                            <textarea name="comment" id="comment" rows="3" required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm"></textarea>
-                        </div>
-                        <button type="submit" class="bg-yellow-500 text-white py-2 px-6 rounded-md hover:bg-yellow-300">Submit Review</button>
-                    </form>
-                </div>
-                @else
-                <p class="text-lg font-semibold text-gray-600">You have already reviewed this product. Thank you!</p>
-                @endif
-            @else
-                <p class="mt-4 text-gray-500"><a href="{{ route('login') }}" class="text-yellow-500 hover:underline">Log in</a> to leave a review.</p>
-            @endauth
-        </div>
-
-        <x-infinite_slider :products="$relatedProducts" />
+        @else
+            <p class="mt-4 text-gray-500"><a href="{{ route('login') }}" class="text-yellow-500 hover:underline">Přihlaste se</a> pro přidání recenze.</p>
+        @endauth
     </div>
+
+    <x-infinite_slider :products="$relatedProducts" />
+</div>
 </div>

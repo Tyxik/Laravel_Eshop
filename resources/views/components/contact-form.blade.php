@@ -1,5 +1,5 @@
 <div class="py-16">
-    <h2 class="text-4xl font-semibold text-center text-white-800">Kontaktní formulář</h2>
+    <h2 class="text-4xl font-semibold text-center font-BebasNeue text-white-800">Kontaktní formulář</h2>
     <form class="max-w-lg mx-auto mt-8 p-8 bg-white shadow-lg rounded-lg" action="https://formspree.io/f/mwplpavd" method="POST">
         @csrf
         <div class="mb-6">
@@ -14,6 +14,6 @@
             <label for="message" class="block text-sm font-medium text-gray-700">Zpráva</label>
             <textarea id="message" name="message" class="border border-gray-300 rounded-md w-full p-4 mt-2" required></textarea>
         </div>
-        <button type="submit" class="bg-yellow-500 text-white rounded-md px-6 py-3 hover:bg-yellow-500 transition duration-200 w-full">Odeslat</button>
+        <button type="submit" class="bg-blue-500 text-white rounded-md px-6 py-3 hover:bg-blue-500 transition duration-200 w-full">Odeslat</button>
     </form>
 </div>

@@ -1,6 +1,6 @@
 <!-- Products Horizontal Scroll Section -->
 <div class="py-10 bg-gray-100 dark:bg-gray-900">
-    <h2 class="text-gray-900 text-3xl font-regular text-center">Naše Produkty</h2>
+    <h2 class="text-gray-900 text-3xl font-BebasNeue text-center">Naše Produkty</h2>
     <div class="overflow-x-auto mt-6">
         <div class="flex space-x-4">
             @foreach($products as $product)
@@ -34,7 +34,7 @@
                             </div>
                         </div>
                         <div class="p-4">
-                            <a href="{{ route('products.show', $product->id) }}" class="btn btn-primary inline-block px-6 py-2 text-white bg-yellow-500 rounded-md hover:bg-yellow-300 transition">Zobrazit detaily</a>
+                            <a href="{{ route('products.show', $product->id) }}" class="btn btn-primary inline-block px-6 py-2 text-white bg-blue-500 rounded-md hover:bg-blue-300 transition">Zobrazit detaily</a>
                         </div>
                     </div>
                 </div>
