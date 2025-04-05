@@ -19,6 +19,7 @@ export default {
         fontFamily: {
             'sans': ['Array', 'sans-serif'],
             'serif': ['Khand', 'serif'],
+            'BebasNeue': ['BebasNeue', 'cursive'], 
         },
         extend: {
             spacing: {

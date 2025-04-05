@@ -16,3 +16,7 @@
         font-family: Khand;
         src: url("/public/fonts/Khand/Khand-Regular.ttf")
     }
+    @font-face {
+        font-family: BebasNeue;
+        src: url("../../public/fonts/BebasNeue/BebasNeue-Regular.ttf");
+    }

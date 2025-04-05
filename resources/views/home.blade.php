@@ -12,7 +12,7 @@
     <!-- Vylepšený nadpis a text -->
     <div class="flex flex-col items-center justify-center h-full absolute top-0 left-0 right-0 bottom-0 z-20">
         <!-- Nadpis -->
-        <h1 class="text-yellow-500 text-5xl font-bold z-10 animate-flicker tracking-widest transition-all duration-500 ease-in-out hover:scale-110 hover:text-yellow-400"
+        <h1 class="text-yellow-500 text-5xl font-BebasNeue font-bold z-10 animate-flicker tracking-widest transition-all duration-500 ease-in-out hover:scale-110 hover:text-yellow-400"
         style="text-shadow: 1px 1px 2px black;" data-aos="zoom-in" data-aos-duration="1500">
         Vítejte na naší stránce!
         </h1>
