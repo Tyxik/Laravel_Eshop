@@ -5,9 +5,29 @@
 <div class="h-20"></div>
 <div class="container mt-20 px-4 sm:px-6 lg:px-8 mx-auto relative top-11">
     <div class="fixed top-10 left-6 z-50">
-        <a href="{{ route('products.index') }}" class="btn btn-secondary bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-6 rounded-md">
-            Back to Products
+        <a href="{{ route('products.index') }}" class="btn btn-secondary bg-yellow-500 hover:bg-yellow-300 text-white font-semibold py-2 px-6 rounded-md">
+            zpět
         </a>
+    </div>
+
+    <!-- Shopping Cart -->
+    <div class="fixed top-10 right-6 z-50 bg-white shadow-lg rounded-lg p-4 w-80">
+        <h2 class="text-xl font-bold mb-4">Košík</h2>
+        <ul id="cart-items" class="space-y-2">
+            @if(session('cart') && count(session('cart')) > 0)
+                @foreach(session('cart') as $cartItem)
+                    <li class="flex justify-between items-center border-b pb-2">
+                        <span>{{ $cartItem['name'] }}</span>
+                        <span>{{ $cartItem['quantity'] }} x {{ $cartItem['price'] }} Kč</span>
+                    </li>
+                @endforeach
+            @else
+                <li class="text-gray-500">Košík je prázdný.</li>
+            @endif
+        </ul>
+        <div class="mt-4">
+            <a href="{{ route('cart.index') }}" class="bg-yellow-500 text-white py-2 px-4 rounded-md hover:bg-yellow-300 block text-center">Zobrazit košík</a>
+        </div>
     </div>
 
     <div class="product-details bg-white p-6 shadow-lg rounded-lg mx-auto w-full max-w-screen-xl flex flex-col lg:flex-row space-y-8 lg:space-y-0 lg:space-x-8">
@@ -20,7 +40,7 @@
                      class="product-image mx-auto object-cover rounded-lg shadow-lg transition-transform duration-300 hover:scale-105"
                      style="width: 100%; max-width: 700px; height: auto; cursor: pointer;">
             @endif
-
+                                                                      
             <!-- Carousel -->
             <div class="flex justify-between mt-4 relative">
                 <button id="prev-image" class="prev-arrow absolute left-0 top-1/2 transform -translate-y-1/2 bg-gray-300 p-2 rounded-full">&lt;</button>
@@ -52,11 +72,11 @@
                 <h1 class="text-4xl font-bold text-gray-800 mb-6">{{ $product->name }}</h1>
                 <p class="text-lg text-gray-600 mb-6">{{ $product->description }}</p>
                 <div class="text-lg font-medium text-gray-800 mb-4">
-                    <p><strong>Price: </strong>{{ $product->price }} Kč</p>
-                    <p><strong>SKU: </strong>{{ $product->sku }}</p>
+                    <p><strong>Cena: </strong>{{ $product->price }} Kč</p>
+                 
                 </div>
                 <div class="text-lg font-medium text-gray-800 mb-6">
-                    <p><strong>In Stock: </strong>{{ $product->in_stock }}</p>
+                    <p><strong>Na skladě: </strong>{{ $product->in_stock }}</p>
                     <p>
                         Hodnocení: <strong>{{ number_format($product->averageRating(), 1) }} ⭐</strong>
                         <span class="text-gray-400">({{ $product->reviews->count() }}x)</span>
@@ -64,9 +84,13 @@
                 </div>
             </div>
             <div class="mt-6">
-                <button type="button" class="inline-block px-8 py-3 text-white bg-green-500 rounded-md hover:bg-green-600 transition w-full lg:w-auto" onclick="showConfirmationBox({{ $product->id }})">
+                <form action="{{ route('cart.add', $product->id) }}" method="POST">
+                    @csrf
+                    <button onclick="addToCart('{{ $product->id }}')" 
+                        class="inline-block px-8 py-3 text-white bg-yellow-500 rounded-md hover:bg-yellow-300 transition w-full lg:w-auto text-center font-semibold shadow-md">
                     Přidat do košíku
                 </button>
+                </form>
             </div>
         </div>
     </div>

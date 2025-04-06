@@ -15,6 +15,9 @@ class ProductController extends Controller
 
         // Předá produkty do view
         return view('products.index', compact('products'));
+
+            
+        
     }
 
     /**
@@ -35,7 +38,7 @@ class ProductController extends Controller
             'name' => 'required|string|max:255',
             'description' => 'required|string',
             'price' => 'required|numeric',
-            'sku' => 'required|string|max:255|unique:products',
+            'sku' => 'required|string|max:255|unique:products,sku,' . ($product->id ?? 'NULL'),
             'in_stock' => 'required|integer',
             'images' => 'nullable|array', // pro více obrázků
             'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048', // Validace pro každý obrázek

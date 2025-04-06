@@ -47,4 +47,6 @@ Route::get('/checkout/success', [CheckoutController::class, 'success'])->name('c
 Route::get('payment/success', [CheckoutController::class, 'paymentSuccess'])->name('payment.success');
 
 
+
+
 require __DIR__.'/auth.php';

@@ -6,7 +6,7 @@
     <h1 class="text-4xl font-semibold text-center text-black mb-8">Nákupní Košík</h1>
 
     <div class="text-center mb-4 mt-8">
-        <a href="{{ route('products.index') }}" class="inline-block px-8 py-3 text-white bg-blue-600 rounded-lg shadow-md hover:bg-blue-700 transition duration-300 ease-in-out">
+        <a href="{{ route('products.index') }}" class="inline-block px-8 py-3 text-white bg-yellow-500 rounded-lg shadow-md hover:bg-yellow-600 transition duration-300 ease-in-out">
             Zpět na produkty
         </a>
     </div>
@@ -18,7 +18,7 @@
 
         <div class="overflow-x-auto bg-white shadow-lg rounded-lg">
             <table class="min-w-full table-auto text-gray-800">
-                <thead class="bg-blue-600 text-white">
+                <thead class="bg-yellow-500 text-white">
                     <tr>
                         <th class="px-6 py-3 text-left">Produkt</th>
                         <th class="px-6 py-3 text-left">Cena</th>
@@ -61,7 +61,7 @@
         </div>
 
         <div class="mt-8 flex justify-end">
-            <a href="{{ route('checkout.index') }}" class="inline-block px-8 py-4 bg-green-600 text-white rounded-lg shadow-md hover:bg-green-700 transition duration-300">
+            <a href="{{ route('checkout.index') }}" class="inline-block px-8 py-4 bg-yellow-500 text-white rounded-lg shadow-md hover:bg-yellow-600 transition duration-300">
                 Přejít k pokladně
             </a>
         </div>
