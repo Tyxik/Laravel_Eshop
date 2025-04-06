@@ -1,7 +1,19 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="h-20"></div>
+@include('layouts.navigation') <!-- Přidání navigačního menu -->
+
+<style>
+    /* Zajištění, že navbar je přilepený nahoře */
+    nav {
+        position: sticky;
+        top: 0;
+        z-index: 50; /* Zajištění, že bude nad ostatními prvky */
+        background-color: white; /* Barva pozadí */
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Jemný stín */
+    }
+</style>
+
 <div class="container py-10 mx-auto mt-8">
     <h1 class="text-3xl font-semibold text-center mb-8 text-black mt-8">Naše Produkty</h1>
 
@@ -87,6 +99,4 @@
         @endforeach
     </div>
 </div>
-
-
 @endsection

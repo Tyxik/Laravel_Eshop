@@ -26,11 +26,14 @@
                     <x-nav-link :href="route('questions.index')" :active="request()->routeIs('questions.index')">
                         {{ __('Q&A') }}
                     </x-nav-link>
-                    <form method="GET" action="{{ route('products.search') }}" class="relative flex items-center">
-                        <input type="text" name="query" placeholder="Hledat produkty..." class="border rounded-l-md p-2 w-64 focus:outline-none focus:ring-2 focus:ring-yellow-500" />
-                        <button type="submit" class="bg-yellow-500 text-white px-4 py-2 rounded-r-md hover:bg-yellow-600 transition duration-300">
+                    
+                    <!-- Search Form with Improved Design -->
+                    <form method="GET" action="{{ route('products.search') }}" class="relative flex items-center w-full max-w-xs">
+                        <input type="text" name="query" placeholder="Hledat produkty..." class="border border-gray-300 rounded-l-md py-2 pl-3 pr-10 w-full focus:outline-none focus:ring-2 focus:ring-yellow-500 transition duration-300" />
+                        <button type="submit" class="absolute right-1 top-1/2 transform -translate-y-1/2 bg-yellow-500 text-white p-2 rounded-full hover:bg-yellow-600 focus:outline-none transition duration-300 flex items-center justify-center shadow-md">
                             <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M10 18l6-6m0 0l-6-6m6 6H3" />
+                                <circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="2"></circle>
+                                <line x1="16" y1="16" x2="21" y2="21" stroke="currentColor" stroke-width="2" stroke-linecap="round"></line>
                             </svg>
                         </button>
                     </form>
@@ -78,19 +81,19 @@
                     </x-slot>
                 </x-dropdown>
             </div>
-         <!-- Cart Button (top-right) -->
-<a href="{{ route('cart.index') }}" class="relative inline-flex items-center justify-center p-2 rounded-md text-black dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none transition ease-in-out duration-150">
-    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-black dark:text-gray-400" viewBox="0 0 24 24" fill="currentColor">
-        <path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13l-1.6-8M7 13l1 5h8l1-5M9 18a1 1 0 100 2 1 1 0 000-2m6 0a1 1 0 100 2 1 1 0 000-2"/>
-    </svg>
-    <span class="ml-2">{{ __('Cart') }}</span>
 
-    @if(session('cart') && count(session('cart')) > 0)
-        <span class="absolute top-1 right-1 bg-red-500 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">
-            {{ count(session('cart')) }}
-        </span>
-    @endif
-</a>
+            <!-- Cart Button (top-right) -->
+            <a href="{{ route('cart.index') }}" class="relative inline-flex items-center justify-center p-2 rounded-md text-black dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none transition ease-in-out duration-150">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-black dark:text-gray-400" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13l-1.6-8M7 13l1 5h8l1-5M9 18a1 1 0 100 2 1 1 0 000-2m6 0a1 1 0 100 2 1 1 0 000-2"/>
+                </svg>
+                <span class="ml-2">{{ __('Košík') }}</span>
+
+                @if(session('cart') && count(session('cart')) > 0)
+                    <span class="absolute top-1 right-1 bg-red-500 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">
+                        {{ count(session('cart')) }}
+                    </span>
+                @endif
             </a>
             <!-- Hamburger -->
             <div class="-me-2 flex items-center sm:hidden">

@@ -3,77 +3,69 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        // Načte všechny produkty z databáze
-        $products = Product::all();
+        $query = Product::query();
 
-        // Předá produkty do view
-        return view('products.index', compact('products'));
+        // Pokud je zadán vyhledávací výraz, filtruj produkty
+        if ($request->has('search') && $request->search != '') {
+            $query->where('name', 'like', '%' . $request->search . '%')
+                ->orWhere('description', 'like', '%' . $request->search . '%');
+        }
 
-            
-        
-    }
+        // Filtr podle ceny
+        if ($request->has('price_from') && $request->price_from != '') {
+            $query->where('price', '>=', $request->price_from);
+        }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        // Vytvoření produktu
-    }
+        if ($request->has('price_to') && $request->price_to != '') {
+            $query->where('price', '<=', $request->price_to);
+        }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        // Validace pro obrázky
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'description' => 'required|string',
-            'price' => 'required|numeric',
-            'sku' => 'required|string|max:255|unique:products,sku,' . ($product->id ?? 'NULL'),
-            'in_stock' => 'required|integer',
-            'images' => 'nullable|array', // pro více obrázků
-            'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048', // Validace pro každý obrázek
-        ]);
-
-        // Uložení obrázků, pokud nějaké existují
-        $imagePaths = [];
-        if ($request->hasFile('images')) {
-            foreach ($request->file('images') as $image) {
-                $imagePaths[] = $image->store('gallery', 'public');
+        // Řazení
+        if ($request->has('sort_by')) {
+            switch ($request->sort_by) {
+                case 'price_asc':
+                    $query->orderBy('price', 'asc');
+                    break;
+                case 'price_desc':
+                    $query->orderBy('price', 'desc');
+                    break;
+                case 'name_asc':
+                    $query->orderBy('name', 'asc');
+                    break;
+                case 'name_desc':
+                    $query->orderBy('name', 'desc');
+                    break;
             }
         }
 
-        // Uložení produktu do databáze
-        Product::create([
-            'name' => $request->name,
-            'description' => $request->description,
-            'price' => $request->price,
-            'sku' => $request->sku,
-            'in_stock' => $request->in_stock,
-            'images' => $imagePaths, // uložené obrázky jako pole
-        ]);
+        $products = $query->get();
 
-        return redirect()->route('products.index')->with('success', 'Product created successfully.');
+        return view('products.index', compact('products'));
     }
 
-    /**
-     * Display the specified resource.
-     */
+
+    public function create()
+    {
+        //
+    }
+
+    public function store(Request $request)
+    {
+        //
+    }
+
     public function show($id)
     {
         $product = Product::findOrFail($id);
 
-        $relatedProducts = Product::where('category_id', $product->category_id)
-            ->where('id', '!=', $product->id)
+        // Get related products (you can adjust the logic to suit your needs)
+        $relatedProducts = Product::where('id', '!=', $product->id)
             ->inRandomOrder()
             ->take(10)
             ->get();
@@ -84,38 +76,42 @@ class ProductController extends Controller
 
     public function search(Request $request)
     {
+        // Debugging - vypíše dotaz z formuláře
+        dd($request->input('query')); 
+
         $query = $request->input('query');
-    
-        // Vyhledávání podle názvu nebo popisu produktu
+        
+        // Pokud není dotaz, přesměrovat zpět
+        if (!$query) {
+            return redirect()->route('products.index');
+        }
+
+        // Vyhledávání podle názvu a popisu
         $products = Product::where('name', 'LIKE', "%{$query}%")
-            ->orWhere('description', 'LIKE', "%{$query}%")
-            ->get();
-    
-        // Vrátí výsledky do šablony
+                        ->orWhere('description', 'LIKE', "%{$query}%")
+                        ->get();
+
+        // Pokud nejsou žádné produkty
+        if ($products->isEmpty()) {
+            return back()->with('message', 'Žádné produkty nenalezeny.');
+        }
+
+        // Předat produkty do pohledu
         return view('products.index', compact('products'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(Product $product)
     {
-        // Editace produktu
+        //
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, Product $product)
     {
-        // Aktualizace produktu
+        //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Product $product)
     {
-        // Odstranění produktu
+        //
     }
 }
