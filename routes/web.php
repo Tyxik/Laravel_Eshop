@@ -48,5 +48,6 @@ Route::get('payment/success', [CheckoutController::class, 'paymentSuccess'])->na
 
 
 
+Route::get('/products/search', [ProductController::class, 'search'])->name('products.search');
 
 require __DIR__.'/auth.php';

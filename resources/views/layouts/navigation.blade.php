@@ -26,11 +26,11 @@
                     <x-nav-link :href="route('questions.index')" :active="request()->routeIs('questions.index')">
                         {{ __('Q&A') }}
                     </x-nav-link>
-                    <form method="GET" action="{{ route('products.search') }}" class="relative">
-                        <input type="text" name="query" placeholder="Search..." class="border rounded-md p-2 mt-3" />
-                        <button type="submit" class="absolute right-0 top-0 mt-6 mr-2">
-                            <svg class="h-6 w-6 text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                                <path fill="currentColor" d="M12.3 13.4c1.2-1.5 2-3.4 2-5.4C14.3 3.6 11.3 0 7 0S-0.3 3.6-0.3 7c0 3.4 2.7 6 6 6 2.1 0 3.9-.8 5.4-2 1.4 1.5 2.4 3.5 2.4 5.6h1.5c0-2.8-1-5.4-2.6-7.3zm-5.3 0C5 14.3 3 16 0 16c1.2 2 3.6 2 6 0 1-1 2-3 2-5.5zm1-6.4C8 3.5 9 2 9 2c1 0 3 1.4 3 2.1 0 .5-.4 1-1 1-.5 0-1 0-1-.5 0 0-.5-.5-1-1z" />
+                    <form method="GET" action="{{ route('products.search') }}" class="relative flex items-center">
+                        <input type="text" name="query" placeholder="Hledat produkty..." class="border rounded-l-md p-2 w-64 focus:outline-none focus:ring-2 focus:ring-yellow-500" />
+                        <button type="submit" class="bg-yellow-500 text-white px-4 py-2 rounded-r-md hover:bg-yellow-600 transition duration-300">
+                            <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M10 18l6-6m0 0l-6-6m6 6H3" />
                             </svg>
                         </button>
                     </form>
