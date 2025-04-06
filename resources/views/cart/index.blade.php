@@ -6,7 +6,7 @@
     <h1 class="text-4xl font-semibold text-center text-black mb-8">Nákupní Košík</h1>
 
     <div class="text-center mb-4 mt-8">
-        <a href="{{ route('products.index') }}" class="inline-block px-8 py-3 text-white bg-yellow-500 rounded-lg shadow-md hover:bg-yellow-600 transition duration-300 ease-in-out">
+        <a href="{{ route('products.index') }}" class="inline-block px-8 py-3 text-black bg-yellow-400 rounded-lg shadow-md hover:bg-yellow-500 transition duration-300 ease-in-out">
             Zpět na produkty
         </a>
     </div>
@@ -18,7 +18,7 @@
 
         <div class="overflow-x-auto bg-white shadow-lg rounded-lg">
             <table class="min-w-full table-auto text-gray-800">
-                <thead class="bg-yellow-500 text-white">
+                <thead class="bg-yellow-400 text-black">
                     <tr>
                         <th class="px-6 py-3 text-left">Produkt</th>
                         <th class="px-6 py-3 text-left">Cena</th>
@@ -35,12 +35,12 @@
                         @endphp
                         <tr class="border-b border-gray-200 hover:bg-gray-100 text-black">
                             <td class="px-6 py-4 text-sm font-medium">{{ $item['name'] }}</td>
-                            <td class="px-6 py-4 text-sm">${{ $item['price'] }}</td>
+                            <td class="px-6 py-4 text-sm">{{ $item['price'] }} Kč</td>
                             <td class="px-6 py-4 text-sm">
                                 <input type="number" name="quantity" class="quantity-input w-16 border p-2 text-center" 
                                        data-id="{{ $id }}" value="{{ $item['quantity'] }}" min="1">
                             </td>
-                            <td class="px-6 py-4 text-sm" id="total-price-{{ $id }}">${{ number_format($itemTotal, 2) }}</td>
+                            <td class="px-6 py-4 text-sm" id="total-price-{{ $id }}">{{ number_format($itemTotal, 2) }} Kč</td>
                             <td class="px-6 py-4 text-sm">
                                 <form action="{{ route('cart.remove', $id) }}" method="POST" class="inline-block">
                                     @csrf
@@ -57,11 +57,11 @@
         </div>
 
         <div class="mt-6 text-right text-lg font-semibold text-black">
-            Celková cena: <span id="cart-total" class="text-green-600">${{ number_format($totalPrice, 2) }}</span>
+            Celková cena: <span id="cart-total" class="text-green-600">{{ number_format($totalPrice, 2) }} Kč</span>
         </div>
 
         <div class="mt-8 flex justify-end">
-            <a href="{{ route('checkout.index') }}" class="inline-block px-8 py-4 bg-yellow-500 text-white rounded-lg shadow-md hover:bg-yellow-600 transition duration-300">
+            <a href="{{ route('checkout.index') }}" class="inline-block px-8 py-4 bg-yellow-400 text-black rounded-lg shadow-md hover:bg-yellow-500 transition duration-300">
                 Přejít k pokladně
             </a>
         </div>
@@ -87,8 +87,8 @@
             .then(response => response.json())
             .then(data => {
                 if (data.success) {
-                    document.getElementById(`total-price-${productId}`).innerText = `$${data.itemTotal.toFixed(2)}`;
-                    document.getElementById('cart-total').innerText = `$${data.cartTotal.toFixed(2)}`;
+                    document.getElementById(`total-price-${productId}`).innerText = `${data.itemTotal.toFixed(2)} Kč`;
+                    document.getElementById('cart-total').innerText = `${data.cartTotal.toFixed(2)} Kč`;
                 }
             })
             .catch(error => console.error('Error:', error));
