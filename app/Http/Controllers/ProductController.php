@@ -10,12 +10,16 @@ class ProductController extends Controller
     public function index(Request $request)
     {
         $query = Product::query();
-
-        // Pokud je zadán vyhledávací výraz, filtruj produkty
-        if ($request->has('search') && $request->search != '') {
-            $query->where('name', 'like', '%' . $request->search . '%')
-                ->orWhere('description', 'like', '%' . $request->search . '%');
+        
+        if ($request->filled('query')) {
+            $search = $request->input('query');
+            $query->where(function ($q) use ($search) {
+                $q->where('name', 'LIKE', "%{$search}%")
+                ->orWhere('description', 'LIKE', "%{$search}%");
+            });
         }
+        
+        
 
         // Filtr podle ceny
         if ($request->has('price_from') && $request->price_from != '') {
@@ -44,7 +48,10 @@ class ProductController extends Controller
             }
         }
 
-        $products = $query->get();
+     
+
+       
+        $products = $query->paginate(12)->withQueryString();
 
         return view('products.index', compact('products'));
     }
@@ -77,7 +84,7 @@ class ProductController extends Controller
     public function search(Request $request)
     {
         // Debugging - vypíše dotaz z formuláře
-        dd($request->input('query')); 
+       // dd($request->input('query')); 
 
         $query = $request->input('query');
         

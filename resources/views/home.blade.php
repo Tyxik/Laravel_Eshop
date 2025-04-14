@@ -38,36 +38,62 @@
     </div>
 </div>
 <!-- Why Choose Us Section -->
-<div id="why-choose-us" class="py-10 text-center bg-gray-100 dark:bg-gray-800" data-aos="fade-up" data-aos-duration="1500">
-    <h2 class="text-3xl font-bold text-gray-900 dark:text-white">Proč nakupovat u nás?</h2>
-    <p class="mt-4 text-lg text-gray-700 dark:text-gray-300">Nabízíme nejlepší produkty za nejlepší ceny!</p>
-    <div class="mt-6 flex flex-wrap justify-center gap-6">
-        <div class="bg-white dark:bg-gray-700 shadow-md rounded-lg p-6 max-w-xs" data-aos="fade-right" data-aos-duration="1500">
+<div id="why-choose-us" class="py-16 text-center bg-gray-100 dark:bg-gray-800" data-aos="fade-up" data-aos-duration="1500">
+    <h2 class="text-4xl font-bold text-gray-900 dark:text-white transition-transform duration-500 ease-in-out hover:scale-110 hover:text-yellow-400">
+        Proč nakupovat u nás?
+    </h2>
+    
+    <p class="mt-6 text-xl text-gray-700 dark:text-gray-300 transition-transform duration-500 ease-in-out hover:scale-110 hover:text-yellow-300">
+        Nabízíme nejlepší produkty za nejlepší ceny!
+    </p>
+    <div class="mt-10 flex flex-wrap justify-center gap-8">
+        <div class="bg-white dark:bg-gray-700 shadow-lg rounded-xl p-8 max-w-sm group transition-transform duration-500 ease-in-out hover:scale-110 hover:shadow-2xl" data-aos="fade-right" data-aos-duration="1500">
             <div class="flex justify-center">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 text-gray-900 dark:text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h11M9 21V3m0 0L3 10m6-7l6 7" />
-                </svg>
+                <div class="relative">
+                    <svg class="w-8 h-8 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3M3.22302 14C4.13247 18.008 7.71683 21 12 21c4.9706 0 9-4.0294 9-9 0-4.97056-4.0294-9-9-9-3.72916 0-6.92858 2.26806-8.29409 5.5M7 9H3V5"/>
+                    </svg>
+                    <div class="absolute inset-0 bg-yellow-400 opacity-0 group-hover:opacity-40 rounded-full transition-opacity duration-500 ease-in-out"></div>
+                </div>
             </div>
-            <h3 class="text-lg font-bold text-gray-900 dark:text-white">Rychlá Doprava</h3>
-            <p class="mt-2 text-gray-700 dark:text-gray-300">Zaručujeme rychlé dodání vašich objednávek.</p>
+            <h3 class="text-xl font-bold text-gray-900 dark:text-white transition-transform duration-500 ease-in-out group-hover:scale-110 group-hover:underline group-hover:decoration-yellow-400 group-hover:decoration-[4px]">
+                Rychlá Doprava
+            </h3>
+            <p class="mt-4 text-gray-700 dark:text-gray-300 transition-transform duration-500 ease-in-out group-hover:scale-110">
+                Zaručujeme rychlé dodání vašich objednávek.
+            </p>
         </div>
-        <div class="bg-white dark:bg-gray-700 shadow-md rounded-lg p-6 max-w-xs" data-aos="fade-up" data-aos-duration="1500">
+        <div class="bg-white dark:bg-gray-700 shadow-lg rounded-xl p-8 max-w-sm group transition-transform duration-500 ease-in-out hover:scale-110 hover:shadow-2xl" data-aos="fade-up" data-aos-duration="1500">
             <div class="flex justify-center">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 text-gray-900 dark:text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 1.343-3 3s1.343 3 3 3 3-1.343 3-3-1.343-3-3-3zm0 0c-4.418 0-8 1.79-8 4v1h16v-1c0-2.21-3.582-4-8-4z" />
-                </svg>
+                <div class="relative">
+                    <svg class="w-8 h-8 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                        <path fill-rule="evenodd" d="M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10S2 17.523 2 12Zm11-4a1 1 0 1 0-2 0v4a1 1 0 0 0 .293.707l3 3a1 1 0 0 0 1.414-1.414L13 11.586V8Z" clip-rule="evenodd"/>
+                    </svg>
+                    <div class="absolute inset-0 bg-yellow-400 opacity-0 group-hover:opacity-40 rounded-full transition-opacity duration-500 ease-in-out"></div>
+                </div>
             </div>
-            <h3 class="text-lg font-bold text-gray-900 dark:text-white">Kvalitní Produkty</h3>
-            <p class="mt-2 text-gray-700 dark:text-gray-300">Naše produkty procházejí důkladným výběrem kvality.</p>
+            <h3 class="text-xl font-bold text-gray-900 dark:text-white transition-transform duration-500 ease-in-out group-hover:scale-110 group-hover:underline group-hover:decoration-yellow-400 group-hover:decoration-[4px]">
+                Kvalitní Produkty
+            </h3>
+            <p class="mt-4 text-gray-700 dark:text-gray-300 transition-transform duration-500 ease-in-out group-hover:scale-110">
+                Naše produkty procházejí důkladným výběrem kvality.
+            </p>
         </div>
-        <div class="bg-white dark:bg-gray-700 shadow-md rounded-lg p-6 max-w-xs" data-aos="fade-left" data-aos-duration="1500">
+        <div class="bg-white dark:bg-gray-700 shadow-lg rounded-xl p-8 max-w-sm group transition-transform duration-500 ease-in-out hover:scale-110 hover:shadow-2xl" data-aos="fade-left" data-aos-duration="1500">
             <div class="flex justify-center">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 text-gray-900 dark:text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 14h.01M16 10h.01M9 21h6m-3-3v3m-4-3a4 4 0 118 0m-8 0H5a2 2 0 01-2-2v-5a2 2 0 012-2h14a2 2 0 012 2v5a2 2 0 01-2 2h-4" />
-                </svg>
+                <div class="relative">
+                    <svg class="w-8 h-8 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                        <path fill-rule="evenodd" d="M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10S2 17.523 2 12Zm5.495.93A.5.5 0 0 0 6.5 13c0 1.19.644 2.438 1.618 3.375C9.099 17.319 10.469 18 12 18c1.531 0 2.9-.681 3.882-1.625.974-.937 1.618-2.184 1.618-3.375a.5.5 0 0 0-.995-.07.764.764 0 0 1-.156.096c-.214.106-.554.208-1.006.295-.896.173-2.111.262-3.343.262-1.232 0-2.447-.09-3.343-.262-.452-.087-.792-.19-1.005-.295a.762.762 0 0 1-.157-.096ZM8.99 8a1 1 0 0 0 0 2H9a1 1 0 1 0 0-2h-.01Zm6 0a1 1 0 1 0 0 2H15a1 1 0 1 0 0-2h-.01Z" clip-rule="evenodd"/>
+                    </svg>
+                    <div class="absolute inset-0 bg-yellow-400 opacity-0 group-hover:opacity-40 rounded-full transition-opacity duration-500 ease-in-out"></div>
+                </div>
             </div>
-            <h3 class="text-lg font-bold text-gray-900 dark:text-white">Zákaznická Podpora</h3>
-            <p class="mt-2 text-gray-700 dark:text-gray-300">Jsme tu pro vás, abychom zodpověděli všechny vaše dotazy.</p>
+            <h3 class="text-xl font-bold text-gray-900 dark:text-white transition-transform duration-500 ease-in-out group-hover:scale-110 group-hover:underline group-hover:decoration-yellow-400 group-hover:decoration-[4px]">
+                Zákaznická Podpora
+            </h3>
+            <p class="mt-4 text-gray-700 dark:text-gray-300 transition-transform duration-500 ease-in-out group-hover:scale-110">
+                Jsme tu pro vás, abychom zodpověděli všechny vaše dotazy.
+            </p>
         </div>
     </div>
 </div>
@@ -78,8 +104,20 @@
 <!-- Reviews Section -->
 @include('components.reviews')
 
-<!-- Contact Form Section -->
-@include('components.contact-form')
+<!-- Contact Form and 3D Model Section -->
+<div class="flex justify-center items-center">
+    <div class="w-full max-w-7xl bg-white dark:bg-gray-800 shadow-lg rounded-lg p-8 flex flex-wrap md:flex-nowrap gap-8" data-aos="fade-up" data-aos-duration="1500">
+        <!-- Contact Form -->
+        <div class="w-full md:w-1/2 flex justify-center items-center">
+            @include('components.contact-form')
+        </div>
+
+        <!-- 3D Model Viewer -->
+        <div class="w-full md:w-1/2 flex justify-center items-center">
+            @include('components.model-viewer')
+        </div>
+    </div>
+</div>
 @endsection
 
 @push('scripts')

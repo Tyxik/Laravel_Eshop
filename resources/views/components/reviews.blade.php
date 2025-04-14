@@ -1,6 +1,8 @@
 <!-- resources/views/components/reviews.blade.php -->
 <div class="reviews-container bg-gray-50 py-10">
-    <h2 class="text-3xl font-semibold text-center mb-6">Co o nás říkají naši zákazníci</h2>
+    <h2 class="text-3xl font-semibold text-center mb-6 transform transition-all duration-500 hover:text-yellow-500 hover:scale-105">
+        Co o nás říkají naši zákazníci
+    </h2>
 
     <!-- Flex container pro čtyři sloupce -->
     <div class="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6">

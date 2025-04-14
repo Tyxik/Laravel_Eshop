@@ -1,6 +1,6 @@
 <!-- Products Horizontal Scroll Section -->
 <div class="py-10 bg-gray-100 dark:bg-gray-900">
-    <h2 class="text-gray-900 text-3xl font-regular text-center">Naše Produkty</h2>
+    <h2 class="text-gray-900 text-4xl font-bold text-center hover:text-yellow-500 hover:scale-105 transition duration-300 transform">Naše Produkty</h2>
     <div class="overflow-x-auto mt-6">
         <div class="flex space-x-4">
             @foreach($products as $product)

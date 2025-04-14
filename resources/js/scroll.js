@@ -1,22 +1,13 @@
-document.addEventListener('DOMContentLoaded', () => {
-    // Vyhledání všech sekcí, které mají být animovány
-    const sections = document.querySelectorAll('.animate-on-scroll');
-
-    // Nastavení Intersection Observer
-    const observer = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                // Přidání třídy pro animaci, když je sekce viditelná
-                entry.target.classList.add('visible');
-                observer.unobserve(entry.target); // Odstranění pozorování po animaci
-            }
-        });
-    }, {
-        threshold: 0.2, // Spustí animaci, když je 20 % sekce viditelné
-    });
-
-    // Přidání pozorování na každou sekci
-    sections.forEach(section => {
-        observer.observe(section);
-    });
-});
+import Lenis from 'lenis'
+import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+ const lenis = new Lenis({
+    smoothWheel: true,
+    duration: 2,
+    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+  });
+  lenis.on('scroll', ScrollTrigger.update)
+gsap.ticker.add((time) => {
+ lenis.raf(time * 1000)
+})
+gsap.ticker.lagSmoothing(0)
