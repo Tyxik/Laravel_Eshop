@@ -28,7 +28,7 @@
                     </x-nav-link>
                     
                     <!-- Search Form with Improved Design -->
-                    <form method="GET" action="{{ route('products.search') }}" class="relative flex items-center w-full max-w-xs">
+                    <form method="GET"} class="relative flex items-center w-full max-w-xs">
                         <input type="text" name="query" placeholder="Hledat produkty..." class="border border-gray-300 rounded-l-md py-2 pl-3 pr-10 w-full focus:outline-none focus:ring-2 focus:ring-yellow-500 transition duration-300" />
                         <button type="submit" class="absolute right-1 top-1/2 transform -translate-y-1/2 bg-yellow-500 text-white p-2 rounded-full hover:bg-yellow-600 focus:outline-none transition duration-300 flex items-center justify-center shadow-md">
                             <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -76,6 +76,9 @@
                         @else
                             <x-dropdown-link :href="route('login')">
                                 {{ __('Login') }}
+                            </x-dropdown-link>
+                            <x-dropdown-link :href="route('register')">
+                                {{ __('Registrace') }}
                             </x-dropdown-link>
                         @endauth
                     </x-slot>

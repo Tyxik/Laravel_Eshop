@@ -1,4 +1,3 @@
-<!-- filepath: c:\Users\tylma\Desktop\webovkos\LLLL\Laravel_Eshop\resources\views\products\show.blade.php -->
 @extends('layouts.app')
 
 @section('content')
@@ -6,7 +5,7 @@
 <div class="container mt-20 px-4 sm:px-6 lg:px-8 mx-auto relative top-11">
     <div class="fixed top-10 left-6 z-50">
         <a href="{{ route('products.index') }}" class="btn btn-secondary bg-yellow-500 hover:bg-yellow-300 text-white font-semibold py-2 px-6 rounded-md">
-            zpět
+            Zpět
         </a>
     </div>
 
@@ -30,8 +29,9 @@
         </div>
     </div>
 
+    <!-- Product Details -->
     <div class="product-details bg-white p-6 shadow-lg rounded-lg mx-auto w-full max-w-screen-xl flex flex-col lg:flex-row space-y-8 lg:space-y-0 lg:space-x-8">
-        <!-- Obrázky -->
+        <!-- Images -->
         <div class="main-image mb-6 lg:w-1/2">
             @if (!empty($product->images))
                 <img id="main-image" 
@@ -66,14 +66,13 @@
             </div>
         </div>
 
-        <!-- Informace o produktu -->
+        <!-- Product Information -->
         <div class="w-full lg:w-1/2 flex flex-col justify-between">
             <div>
                 <h1 class="text-4xl font-bold text-gray-800 mb-6">{{ $product->name }}</h1>
                 <p class="text-lg text-gray-600 mb-6">{{ $product->description }}</p>
                 <div class="text-lg font-medium text-gray-800 mb-4">
                     <p><strong>Cena: </strong>{{ $product->price }} Kč</p>
-                 
                 </div>
                 <div class="text-lg font-medium text-gray-800 mb-6">
                     <p><strong>Na skladě: </strong>{{ $product->in_stock }}</p>
@@ -86,19 +85,23 @@
             <div class="mt-6">
                 <form action="{{ route('cart.add', $product->id) }}" method="POST">
                     @csrf
-                    <button onclick="addToCart('{{ $product->id }}')" 
+                    <div class="flex items-center space-x-4 mb-4">
+                        <label for="quantity" class="text-lg font-medium text-gray-700">Počet:</label>
+                        <input type="number" name="quantity" id="quantity" value="1" min="1" max="{{ $product->in_stock }}" class="w-20 border-gray-300 rounded-md shadow-sm">
+                    </div>
+                    <button type="submit" 
                         class="inline-block px-8 py-3 text-white bg-yellow-500 rounded-md hover:bg-yellow-300 transition w-full lg:w-auto text-center font-semibold shadow-md">
-                    Přidat do košíku
-                </button>
+                        Přidat do košíku
+                    </button>
                 </form>
             </div>
         </div>
     </div>
 
-    <!-- Recenze -->
+    <!-- Reviews -->
     <div class="p-8 m-8">
         <div class="mt-8 p-6 bg-white shadow-lg rounded-lg">
-            <h2 class="text-2xl font-semibold text-gray-800 mb-4">Customer Reviews</h2>
+            <h2 class="text-2xl font-semibold text-gray-800 mb-4">Recenze zákazníků</h2>
 
             @if($product->reviews->count() > 0)
                 @foreach($product->reviews as $review)
@@ -109,7 +112,7 @@
                     </div>
                 @endforeach
             @else
-                <p class="text-gray-500">No reviews yet. Be the first to review this product!</p>
+                <p class="text-gray-500">Zatím žádné recenze. Buďte první, kdo ohodnotí tento produkt!</p>
             @endif
 
             @auth
@@ -119,35 +122,40 @@
 
                 @if(!$existingReview)
                 <div class="mt-6">
-                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Add a Review</h3>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Přidat recenzi</h3>
                     <form action="{{ route('reviews.store') }}" method="POST">
                         @csrf
                         <input type="hidden" name="product_id" value="{{ $product->id }}">
                         <div class="mb-4">
-                            <label for="rating" class="block text-lg font-medium text-gray-700">Rating</label>
+                            <label for="rating" class="block text-lg font-medium text-gray-700">Hodnocení</label>
                             <select name="rating" id="rating" required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">
-                                <option value="5">⭐️⭐️⭐️⭐️⭐️ - Excellent</option>
-                                <option value="4">⭐️⭐️⭐️⭐️ - Good</option>
-                                <option value="3">⭐️⭐️⭐️ - Average</option>
-                                <option value="2">⭐️⭐️ - Poor</option>
-                                <option value="1">⭐️ - Terrible</option>
+                                <option value="5">⭐️⭐️⭐️⭐️⭐️ - Výborné</option>
+                                <option value="4">⭐️⭐️⭐️⭐️ - Dobré</option>
+                                <option value="3">⭐️⭐️⭐️ - Průměrné</option>
+                                <option value="2">⭐️⭐️ - Špatné</option>
+                                <option value="1">⭐️ - Hrozné</option>
                             </select>
                         </div>
                         <div class="mb-4">
-                            <label for="comment" class="block text-lg font-medium text-gray-700">Comment</label>
+                            <label for="comment" class="block text-lg font-medium text-gray-700">Komentář</label>
                             <textarea name="comment" id="comment" rows="3" required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm"></textarea>
                         </div>
-                        <button type="submit" class="bg-yellow-500 text-white py-2 px-6 rounded-md hover:bg-yellow-300">Submit Review</button>
+                        <button type="submit" class="bg-yellow-500 text-white py-2 px-6 rounded-md hover:bg-yellow-300">Odeslat recenzi</button>
                     </form>
                 </div>
                 @else
-                <p class="text-lg font-semibold text-gray-600">You have already reviewed this product. Thank you!</p>
+                <p class="text-lg font-semibold text-gray-600">Tento produkt jste již ohodnotili. Děkujeme!</p>
                 @endif
             @else
-                <p class="mt-4 text-gray-500"><a href="{{ route('login') }}" class="text-yellow-500 hover:underline">Log in</a> to leave a review.</p>
+                <p class="mt-4 text-gray-500"><a href="{{ route('login') }}" class="text-yellow-500 hover:underline">Přihlaste se</a> pro přidání recenze.</p>
             @endauth
         </div>
 
-        <x-infinite_slider :products="$relatedProducts" />
+        <!-- Related Products -->
+        <div class="mt-12">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-6">Související produkty</h2>
+            <x-infinite_slider :products="$relatedProducts" />
+        </div>
     </div>
 </div>
+@endsection

@@ -27,9 +27,9 @@
                         @foreach(session('cart') as $id => $item)
                             <tr class="border-b border-yellow-200 hover:bg-yellow-100 text-yellow-900">
                                 <td class="px-6 py-4 text-sm font-medium">{{ $item['name'] }}</td>
-                                <td class="px-6 py-4 text-sm">{{ number_format($item['price'] * 22, 2) }} Kč</td>
+                                <td class="px-6 py-4 text-sm">{{ number_format($item['price'], 2) }} Kč</td>
                                 <td class="px-6 py-4 text-sm">{{ $item['quantity'] }}</td>
-                                <td class="px-6 py-4 text-sm">{{ number_format($item['price'] * $item['quantity'] * 22, 2) }} Kč</td>
+                                <td class="px-6 py-4 text-sm">{{ number_format($item['price'] * $item['quantity'], 2) }} Kč</td>
                             </tr>
                         @endforeach
                     </tbody>
@@ -39,7 +39,7 @@
             <!-- Total Price -->
             <div class="mt-8 flex justify-end text-xl font-semibold">
                 <p class="text-yellow-900">Celková cena: {{ number_format(array_sum(array_map(function ($item) {
-                    return $item['price'] * $item['quantity'] * 22;
+                    return $item['price'] * $item['quantity'];
                 }, session('cart'))), 2) }} Kč</p>
             </div>
 

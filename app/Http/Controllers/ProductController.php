@@ -83,26 +83,18 @@ class ProductController extends Controller
 
     public function search(Request $request)
     {
-        // Debugging - vypíše dotaz z formuláře
-       // dd($request->input('query')); 
-
         $query = $request->input('query');
-        
+    
         // Pokud není dotaz, přesměrovat zpět
         if (!$query) {
             return redirect()->route('products.index');
         }
-
-        // Vyhledávání podle názvu a popisu
+    
+        // Vyhledávání pouze podle názvu
         $products = Product::where('name', 'LIKE', "%{$query}%")
-                        ->orWhere('description', 'LIKE', "%{$query}%")
-                        ->get();
-
-        // Pokud nejsou žádné produkty
-        if ($products->isEmpty()) {
-            return back()->with('message', 'Žádné produkty nenalezeny.');
-        }
-
+                        ->paginate(12)
+                        ->withQueryString();
+    
         // Předat produkty do pohledu
         return view('products.index', compact('products'));
     }
